@@ -18,15 +18,6 @@ public class LoginDefs {
         Driver.get().get(url);
     }
 
-    @When("the user enters the HR information")
-    public void the_user_enters_the_HR_information() {
-        String username = ConfigurationReader.get("HR_username");
-        String password = ConfigurationReader.get("HR_password");
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(username,password);
-    }
-
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
         BrowserUtils.waitFor(3);
@@ -34,23 +25,25 @@ public class LoginDefs {
         Assert.assertEquals("https://qa.nextbasecrm.com/stream/?login=yes",actualUrl);
     }
 
-    @When("the user enters the helpdesk information")
-    public void the_user_enters_the_helpdesk_information() {
-        String username = ConfigurationReader.get("Helpdesk_username");
-        String password = ConfigurationReader.get("Helpdesk_password");
 
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(username,password);
+    @When("the user enters the {string} information")
+    public void the_user_enters_the_information(String userType) {
+        String username =null;
+        String password =null;
 
+        if(userType.equals("HR")){
+            username = ConfigurationReader.get("HR_username");
+            password = ConfigurationReader.get("HR_password");
+        }else if(userType.equals("Helpdesk")){
+            username = ConfigurationReader.get("Helpdesk_username");
+            password = ConfigurationReader.get("Helpdesk_password");
+        }else if(userType.equals("Marketing")){
+            username = ConfigurationReader.get("Marketing_username");
+            password = ConfigurationReader.get("Marketing_password");
+        }
+        //send username and password and login
+        new LoginPage().login(username,password);
     }
 
-    @When("the user enters the marketing information")
-    public void the_user_enters_the_marketing_information() {
-        String username = ConfigurationReader.get("Marketing_username");
-        String password = ConfigurationReader.get("Marketing_password");
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.login(username,password);
-    }
 
 }
