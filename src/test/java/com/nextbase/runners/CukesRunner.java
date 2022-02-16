@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
         plugin = {"json:target/cucumber.json",
                 "html:target/default-html-reports",
                 "rerun:target/rerun.txt"},
-        features = "src/test/resources/features",
-        glue = "com/nextbase/step_definitions",
+        features = "C:\\Users\\user\\nextbaseCRM\\src\\test\\resources\\feature",
+        glue = "com/nextbaseCRM/step_definitions",
         dryRun = false,
-        tags = "@login"
+        tags = "@wip"
 )
 public class CukesRunner {
 }

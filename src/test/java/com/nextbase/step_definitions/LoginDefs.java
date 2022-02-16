@@ -1,5 +1,6 @@
 package com.nextbase.step_definitions;
 
+
 import com.nextbase.pages.LoginPage;
 import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.ConfigurationReader;
