@@ -1,4 +1,3 @@
-
 Feature: Users should be able to login
   @login
   Scenario: Login as a HR
