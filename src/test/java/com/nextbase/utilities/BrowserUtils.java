@@ -374,7 +374,36 @@ public class BrowserUtils {
     public static void waitForPresenceOfElement(By by, long time) {
         new WebDriverWait(Driver.get(), time).until(ExpectedConditions.presenceOfElementLocated(by));
     }
+    public static void click(WebElement element){
+        try{
+            element.click();
+        } catch (ElementClickInterceptedException c){
+            c.printStackTrace();
+            clickWithJS(element);
+        } catch (Exception e){
+            Driver.get().navigate().refresh();
+            new Actions(Driver.get()).moveToElement(element).click().perform();
+        }
+    }
 
+    public static void click(By by){
+        WebElement element = getElement(by);
+        click(element);
 
+    }
+    public static WebElement getElement(By by){
+        WebElement element = null;
+        for(int i = 0; i<5; i++){
+            try{
+                element = Driver.get().findElement(by);
+            } catch (NoSuchElementException n){
+                waitFor(2);
+            } catch (StaleElementReferenceException s){
+                Driver.get().navigate().refresh();
+                waitFor(2);
+            }
+        }
+        return element;
+    }
 
 }
