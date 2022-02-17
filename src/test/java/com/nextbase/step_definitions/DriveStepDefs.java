@@ -14,6 +14,7 @@ public class DriveStepDefs {
     public void the_user_clicks_Drive() {
         drivePage.drive.click();
 
+
     }
 
 
@@ -29,14 +30,14 @@ public class DriveStepDefs {
     }
 
     @Then("the user should be able to display Company Drive")
-    public void theUserShouldBeAbleToDisplayCompanyDrive() {
+    public void theUserShouldBeAbleToDisplayCompanyDrive() throws InterruptedException {
         drivePage.companyDrive.click();
 
         String actualTitle = Driver.get().getTitle();
         String expectedTitle = "Company drive";
 
         Assert.assertTrue(actualTitle.contains(expectedTitle));
-
+        Thread.sleep(3000);
 
     }
 
