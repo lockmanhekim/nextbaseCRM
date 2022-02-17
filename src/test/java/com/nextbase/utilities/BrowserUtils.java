@@ -405,5 +405,9 @@ public class BrowserUtils {
         }
         return element;
     }
-
+    public static void fileUpload(String filePath, By by){
+        String projectPath = System.getProperty("user.dir");
+        String fullPath = projectPath + "/" + filePath;
+        BrowserUtils.getElement(by).sendKeys(fullPath);
+    }
 }
