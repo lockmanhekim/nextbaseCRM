@@ -1,6 +1,8 @@
 package com.nextbase.pages;
 
+import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.Driver;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -81,6 +83,41 @@ public class WorkgroupsPage extends BasePage{
        String num = getNumOfWorkgroup(str);
        String requestSendId= "bx-sonet-groups-request-sent-"+num;
        return Driver.get().findElement(By.id(requestSendId));
+
+    }
+
+
+    /**
+     * Leaves the given Open Workgroup and so join button is reactivated
+     *
+     * @param str
+     */
+
+    public void leaveGroup(String str){
+
+        getWorkgroup(str).click();
+        Driver.get().findElement(By.id("bx-group-menu-settings")).click();
+        BrowserUtils.waitFor(1);
+
+        Driver.get().findElement(By.linkText("Leave Workgroup")).click();
+        WebElement iframeElement = Driver.get().findElement(By.xpath("//iframe[contains(@src,'group')]"));
+
+        Driver.get().switchTo().frame(iframeElement);
+        BrowserUtils.waitFor(2);
+        Driver.get().findElement(By.id("sonet_group_user_leave_button_submit")).click();
+
+    }
+
+    /**
+     * Revokes the given Private Workgroup and so join button is reactivated
+     *
+     * @param str
+     */
+    public void revokeGroup(String str){
+
+        getWorkgroup(str).click();
+        BrowserUtils.waitFor(2);
+        Driver.get().findElement(By.cssSelector(".ui-btn.ui-btn-md.ui-btn-danger")).click();
 
     }
 

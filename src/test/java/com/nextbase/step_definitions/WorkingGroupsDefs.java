@@ -38,6 +38,7 @@ public class WorkingGroupsDefs {
         BrowserUtils.waitFor(1);
 
         Assert.assertTrue(workgroupsPage.getWorkgroup(str).isDisplayed());
+        workgroupsPage.leaveGroup(str);
     }
 
     @When("the user click join button of a {string}")
@@ -45,6 +46,7 @@ public class WorkingGroupsDefs {
 
         try{
             workgroupsPage.getJoinButtons(str).click();
+            BrowserUtils.waitFor(2);
         }catch (NoSuchElementException e) {
             System.out.println("Element disappeared after clicking the join button");
         }
@@ -57,12 +59,15 @@ public class WorkingGroupsDefs {
             switch (str) {
                 case "PR and advertising":
                     Assert.assertTrue(workgroupsPage.sendMessagePR.isDisplayed());
+                    workgroupsPage.revokeGroup(str);
                     break;
                 case "Sales team":
                     Assert.assertTrue(workgroupsPage.sendMessageSales.isDisplayed());
+                    workgroupsPage.revokeGroup(str);
                     break;
                 case "Technology":
                     Assert.assertTrue(workgroupsPage.sendMessageTech.isDisplayed());
+                    workgroupsPage.revokeGroup(str);
                     break;
             }
         }catch (Exception e){
@@ -87,6 +92,19 @@ public class WorkingGroupsDefs {
         workgroupsPage.favoriteList.click();
 
         Assert.assertTrue(workgroupsPage.getFavIcon(str).isDisplayed());
+
+    }
+
+    @When("the user hover over the add favorite icon of {string}")
+    public void theUserHoverOverTheAddFavoriteIconOf(String str) {
+
+        BrowserUtils.hover(workgroupsPage.getFavIcon(str));
+    }
+
+    @Then("the user should be able to see {string}")
+    public void theUserShouldBeAbleToSee(String str) {
+
+       // workgroupsPage.getFavIcon(str).getAttribute("title").equals()
 
     }
 }
