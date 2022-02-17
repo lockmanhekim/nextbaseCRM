@@ -28,6 +28,9 @@ public class WorkgroupsPage extends BasePage{
     @FindBy(id="bx-sonet-groups-request-sent-3")
     public WebElement sendMessageSales;
 
+    @FindBy(id="bx-sonet-groups-request-sent-5")
+    public WebElement sendMessageTech;
+
 
     /**
      * Gets the locator of given Workgroup

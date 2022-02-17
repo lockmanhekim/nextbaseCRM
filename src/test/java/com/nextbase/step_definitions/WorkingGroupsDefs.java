@@ -7,8 +7,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.remote.ErrorCodes;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WorkingGroupsDefs {
@@ -42,19 +44,27 @@ public class WorkingGroupsDefs {
         try{
             workgroupsPage.getJoinButtons(str).click();
         }catch (NoSuchElementException e) {
-            System.out.println(e);
+            System.out.println("Element disappeared after clicking the join button");
         }
     }
+
+
 
     @Then("the user should able to join the {string}")
     public void theUserShouldAbleToJoinThe(String str) {
         try{
-            if (str.equals("PR and advertising")){
-                Assert.assertTrue(workgroupsPage.sendMessagePR.isDisplayed());
-            }else if(str.equals("Soccer team")){
-                Assert.assertTrue(workgroupsPage.sendMessageSales.isDisplayed());
+            switch (str) {
+                case "PR and advertising":
+                    Assert.assertTrue(workgroupsPage.sendMessagePR.isDisplayed());
+                    break;
+                case "Sales team":
+                    Assert.assertTrue(workgroupsPage.sendMessageSales.isDisplayed());
+                    break;
+                case "Technology":
+                    Assert.assertTrue(workgroupsPage.sendMessageTech.isDisplayed());
+                    break;
             }
-        }catch (NoSuchElementException e){
+        }catch (Exception e){
             workgroupsPage.search.click();
             workgroupsPage.myList.click();
             Assert.assertTrue(workgroupsPage.getWorkgroup(str).isDisplayed());

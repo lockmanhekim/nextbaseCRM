@@ -1,4 +1,4 @@
-@wip
+
 Feature: Joining the Working Groups
 
   Background:
@@ -21,7 +21,7 @@ Feature: Joining the Working Groups
       | Marketing | Corporate Christmas Party |
       | Marketing | Soccer team               |
 
-
+@wip
   Scenario Outline: <user> should able to join private workgroup
     When the user enters the "<user>" information
     Then the user should be able to login
@@ -33,11 +33,13 @@ Feature: Joining the Working Groups
       | user      | private workgroup  |
       | HR        | PR and advertising |
       | HR        | Sales              |
+      | HR        | Technology         |
       | Helpdesk  | PR and advertising |
       | Helpdesk  | Sales              |
+      | Helpdesk  | Technology         |
       | Marketing | PR and advertising |
       | Marketing | Sales              |
-
+      | Marketing | Technology         |
 
   Scenario Outline: <user> should able to add favorite the <workgroup>
     When the user enters the "<user>" information
