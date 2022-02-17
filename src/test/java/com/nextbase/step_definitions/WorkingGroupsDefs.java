@@ -33,7 +33,9 @@ public class WorkingGroupsDefs {
     public void the_user_should_able_to_see_the_in_My_list(String str) {
 
         workgroupsPage.search.click();
+        BrowserUtils.waitFor(1);
         workgroupsPage.myList.click();
+        BrowserUtils.waitFor(1);
 
         Assert.assertTrue(workgroupsPage.getWorkgroup(str).isDisplayed());
     }
@@ -47,7 +49,6 @@ public class WorkingGroupsDefs {
             System.out.println("Element disappeared after clicking the join button");
         }
     }
-
 
 
     @Then("the user should able to join the {string}")

@@ -3,7 +3,7 @@ Feature: Joining the Working Groups
 
   Background:
     Given the user is on the login page
-
+  @wip
   Scenario Outline:<user> should able to join <open workgroup>
     When the user enters the "<user>" information
     Then the user should be able to login
@@ -21,7 +21,7 @@ Feature: Joining the Working Groups
       | Marketing | Corporate Christmas Party |
       | Marketing | Soccer team               |
 
-@wip
+
   Scenario Outline: <user> should able to join private workgroup
     When the user enters the "<user>" information
     Then the user should be able to login
