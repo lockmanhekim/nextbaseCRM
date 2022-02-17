@@ -1,14 +1,16 @@
 package com.nextbase.step_definitions;
 
+import com.nextbase.pages.DrivePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class DriveStepDefs {
+DrivePage drivePage = new DrivePage();
 
     @Given("the user is on the main page")
     public void the_user_is_on_the_main_page() {
-
+        drivePage.drive.click();
 
     }
 
