@@ -1,68 +1,81 @@
 package com.nextbase.step_definitions;
 
-import com.nextbase.pages.LoginPage;
 import com.nextbase.pages.WorkgroupsPage;
 import com.nextbase.utilities.BrowserUtils;
-import com.nextbase.utilities.ConfigurationReader;
 import com.nextbase.utilities.Driver;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WorkingGroupsDefs {
 
     WorkgroupsPage workgroupsPage = new WorkgroupsPage();
 
-    @When("the user enters the {string} information")
-    public void the_user_enters_the_information(String userType) {
-
-        switch (userType) {
-
-            case "HR":
-                new LoginPage().login(ConfigurationReader.get("HR_username"), ConfigurationReader.get("HR_password"));
-                break;
-            case "helpdesk":
-                new LoginPage().login(ConfigurationReader.get("Helpdesk_username"), ConfigurationReader.get("Helpdesk_password"));
-                break;
-            case "marketing":
-                new LoginPage().login(ConfigurationReader.get("Helpdesk_username"), ConfigurationReader.get("Helpdesk_password"));
-                break;
-        }
-
-    }
-
     @When("the user click on Workgroups")
     public void the_user_click_on_Workgroups() {
+
         workgroupsPage.workGroupsButton.click();
     }
 
     @Then("Workgroups and projects page displayed")
     public void workgroups_and_projects_page_displayed() {
+
         Assert.assertTrue(Driver.get().getTitle().contains("Workgroups and projects"));
     }
 
-
-    @When("the user click join button of {string}")
-    public void the_user_click_join_button_of(String openWorkgroup) {
-
-        if(openWorkgroup.equals("Corporate Christmas Party")){
-            workgroupsPage.christmasJoin.click();
-        }else if (openWorkgroup.equals("Soccer team")){
-            workgroupsPage.soccerJoin.click();
-        }
-
-    }
-
     @Then("the user should able to see the {string} in My list")
-    public void the_user_should_able_to_see_the_in_My_list(String openWorkgroup) {
+    public void the_user_should_able_to_see_the_in_My_list(String str) {
 
-       Assert.assertTrue(BrowserUtils.getElementsText(workgroupsPage.workgroupInMyList).contains(openWorkgroup));
+        workgroupsPage.search.click();
+        workgroupsPage.myList.click();
 
+        Assert.assertTrue(workgroupsPage.getWorkgroup(str).isDisplayed());
     }
 
+    @When("the user click join button of a {string}")
+    public void the_user_click_join_button_of_a(String str) {
+
+        try{
+            workgroupsPage.getJoinButtons(str).click();
+        }catch (NoSuchElementException e) {
+            System.out.println(e);
+        }
+    }
+
+    @Then("the user should able to join the {string}")
+    public void theUserShouldAbleToJoinThe(String str) {
+        try{
+            if (str.equals("PR and advertising")){
+                Assert.assertTrue(workgroupsPage.sendMessagePR.isDisplayed());
+            }else if(str.equals("Soccer team")){
+                Assert.assertTrue(workgroupsPage.sendMessageSales.isDisplayed());
+            }
+        }catch (NoSuchElementException e){
+            workgroupsPage.search.click();
+            workgroupsPage.myList.click();
+            Assert.assertTrue(workgroupsPage.getWorkgroup(str).isDisplayed());
+        }
+    }
+
+    @When("the user click on add favorite icon of {string}")
+    public void the_User_Click_On_Add_Favorite_Icon_Of(String str) {
+
+        if(workgroupsPage.getFavIcon(str).getAttribute("title").equals("Add to favorites")){
+            workgroupsPage.getFavIcon(str).click();
+        }
+    }
+
+    @Then("the user should able to see the {string} in Favorites list")
+    public void theUserShouldAbleToSeeTheInFavoritesList(String str) {
+
+        workgroupsPage.search.click();
+        workgroupsPage.favoriteList.click();
+
+        Assert.assertTrue(workgroupsPage.getFavIcon(str).isDisplayed());
+
+    }
 }
