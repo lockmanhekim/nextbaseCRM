@@ -13,4 +13,14 @@ public abstract class BasePage {
     @FindBy(xpath = "//a[@title=\"Employees\"]")
     public WebElement employeeLink;
 
+    @FindBy(css= "#user-name")
+    public WebElement userNameDropdown;
+
+    @FindBy(linkText = "Edit Profile Settings")
+    public WebElement editProfileSettingsMenu;
+
+    @FindBy(linkText = "My Profile")
+    public WebElement myProfileMenu;
+
+
 }
