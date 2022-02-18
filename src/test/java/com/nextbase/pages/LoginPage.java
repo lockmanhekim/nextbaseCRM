@@ -20,12 +20,18 @@ public class LoginPage {
     @FindBy(css = "input[class='login-btn']")
     public WebElement submit;
 
+    @FindBy(className = "errortext")
+    public WebElement ver;
+
 
     public void login(String userNameStr, String passwordStr) {
         userName.sendKeys(userNameStr);
         password.sendKeys(passwordStr);
         submit.click();
+    }
 
+    public String errorMessage(){
+        return ver.getText();
     }
 
 }
