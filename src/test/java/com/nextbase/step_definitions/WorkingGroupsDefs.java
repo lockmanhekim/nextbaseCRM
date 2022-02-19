@@ -95,16 +95,4 @@ public class WorkingGroupsDefs {
 
     }
 
-    @When("the user hover over the add favorite icon of {string}")
-    public void theUserHoverOverTheAddFavoriteIconOf(String str) {
-
-        BrowserUtils.hover(workgroupsPage.getFavIcon(str));
-    }
-
-    @Then("the user should be able to see {string}")
-    public void theUserShouldBeAbleToSee(String str) {
-
-       // workgroupsPage.getFavIcon(str).getAttribute("title").equals()
-
-    }
 }
