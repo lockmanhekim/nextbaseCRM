@@ -99,6 +99,28 @@ public class LoginDefs {
 
     }
 
+    @When("the user enters invalid credentials {int} times")
+    public void the_user_enters_invalid_credentials_times(Integer trys) {
+
+        String username = "asdadfg";
+        String password ="133454";
+
+        for (int i = 0; i < trys; i++) {
+            BrowserUtils.waitFor(1);
+            new LoginPage().login(username,password);
+        }
+    }
+
+    @Then("the Error message should be {string}")
+    public void the_Error_message_should_be(String string) {
+        LoginPage loginn = new LoginPage();
+
+        BrowserUtils.waitFor(2);
+        String actualMessage = loginn.errorMessage();
+        Assert.assertEquals("Please try again after one minute",actualMessage);
+    }
+
+
 
 
 }
