@@ -1,5 +1,6 @@
 package com.nextbase.step_definitions;
 
+
 import com.nextbase.pages.LoginPage;
 import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.ConfigurationReader;
@@ -44,6 +45,83 @@ public class LoginDefs {
         //send username and password and login
         new LoginPage().login(username,password);
     }
+
+    @When("the user enters the {string} {string} information")
+    public void the_user_enters_the_information(String userType, String verify) {
+
+        String username =null;
+        String password =null;
+
+        if(userType.equals("HR")){
+            if(verify.equals("username")){
+                username = "ashbf";
+                password = ConfigurationReader.get("HR_password");
+            }else if(verify.equals("password")){
+                username = ConfigurationReader.get("HR_username");
+                password = "askdga";
+            }else if(verify.equals("empty")){
+                username = " ";
+                password =  " ";
+            }
+        }else if(userType.equals("Helpdesk")){
+            if(verify.equals("username")){
+                username = "ashbf";
+                password = ConfigurationReader.get("Helpdesk_password");
+            }else if(verify.equals("password")){
+                username = ConfigurationReader.get("Helpdesk_username");
+                password = "askdga";
+            }else if(verify.equals("empty")){
+                username = " ";
+                password =  " ";
+            }
+        }else if(userType.equals("Marketing")){
+            if(verify.equals("username")){
+                username = "ashbf";
+                password = ConfigurationReader.get("Marketing_password");
+            }else if(verify.equals("password")){
+                username = ConfigurationReader.get("Marketing_username");
+                password = "askdga";
+            }else if(verify.equals("empty")){
+                username = " ";
+                password =  " ";
+            }
+        }
+        BrowserUtils.waitFor(1);
+        new LoginPage().login(username,password);
+    }
+
+    @Then("the user should not be able to login")
+    public void the_user_should_not_be_able_to_login() {
+        LoginPage loginn = new LoginPage();
+
+        BrowserUtils.waitFor(2);
+        String actualMessage = loginn.errorMessage();
+        Assert.assertEquals("Incorrect login or password",actualMessage);
+
+    }
+
+    @When("the user enters invalid credentials {int} times")
+    public void the_user_enters_invalid_credentials_times(Integer trys) {
+
+        String username = "asdadfg";
+        String password ="133454";
+
+        for (int i = 0; i < trys; i++) {
+            BrowserUtils.waitFor(1);
+            new LoginPage().login(username,password);
+        }
+    }
+
+    @Then("the Error message should be {string}")
+    public void the_Error_message_should_be(String string) {
+        LoginPage loginn = new LoginPage();
+
+        BrowserUtils.waitFor(2);
+        String actualMessage = loginn.errorMessage();
+        Assert.assertEquals("Please try again after one minute",actualMessage);
+    }
+
+
 
 
 }
