@@ -1,6 +1,7 @@
 @wip
 Feature:
 
+
   Scenario Outline: User should see <textShown>
 
     Given the user is on the login page
