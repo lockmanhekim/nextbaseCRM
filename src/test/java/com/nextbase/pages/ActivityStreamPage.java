@@ -26,8 +26,6 @@ public class ActivityStreamPage extends BasePage {
     @FindBy(xpath = "(//div[@class = 'feed-post-text-block-inner-inner'])[1]")
     public WebElement firstPostOnActivityStreamText;
 
-    //////////////
-
 
     @FindBy (id = "LIVEFEED_search")
     public WebElement ASFilterAndSearchButton ;
@@ -35,16 +33,16 @@ public class ActivityStreamPage extends BasePage {
     @FindBy (xpath = "//input[@name='TO_label']")
     public WebElement filterAndSearchTO;
 
-    /*
-    @FindBy (xpath = "//div[@class='bx-finder-box-item-t7-name']")
-    public WebElement filterSuggestions;
-
-    @FindBy(css = ".feed-add-post-destination-new")
-    public WebElement activityStreamSearchResult ;
-*/
+    @FindBy (xpath = "//input[@name='CREATED_BY_ID_label']")
+    public WebElement filterAndSearchAuthor;
 
 
-    ///////////////
+
+
+
+
+
+
 
     public void sendMessage(String message){
         WebElement messageInput = Driver.get().switchTo().frame(iframe_1_onActivityStreamPage).findElement(By.xpath("//html//body"));
