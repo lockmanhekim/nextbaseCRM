@@ -32,5 +32,3 @@ Feature: Users should be able to login
       Given the user is on the login page
       When the user enters invalid credentials 5 times
       Then the Error message should be "Please try again after one minute"
-
-

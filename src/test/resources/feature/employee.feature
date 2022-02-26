@@ -1,9 +1,8 @@
-@wip
+
 
 Feature:
 
   Scenario: User should see Company Structure
-
     Given the user is on the login page
     And the user enters the "HR" information
     When user clicks on "Employees" link from left menu
