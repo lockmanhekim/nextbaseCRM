@@ -1,4 +1,3 @@
-@mms
 Feature: User should be able to filter and search on Activity Stream.
 
   Scenario Outline: User can search by "TO" <users>
@@ -18,17 +17,20 @@ Feature: User should be able to filter and search on Activity Stream.
       | Helpdesk  |  | Helpdesk  |  | Depart3       |  | Depart3       |
       | Marketing |  | Marketing |  | Depart3       |  | Depart3       |
 
-
-    Scenario Outline: User can search by "Author" <users>
-      Given the user is on the login page
-      And the user enters the "<userType>" information
-      When the user searches "<Names>" by Author
-      Then user should see "<Result>" activities on Activity Stream "Author"
-      Examples:
-        | users     |  | userType  |  | Names         |  | Result        |
-        | HR        |  | HR        |  | James         |  | James         |
-        | Helpdesk  |  | Helpdesk  |  | James         |  | James         |
-        | Marketing |  | Marketing |  | James         |  | James         |
+  @mms
+  Scenario Outline: User can search by "Author" <users>
+    Given the user is on the login page
+    And the user enters the "<userType>" information
+    When the user searches "<Names>" by Author
+    Then user should see "<Result>" activities on Activity Stream "Author"
+    Examples:
+      | users     |  | userType  |  | Names                        |  | Result                       |
+      | HR        |  | HR        |  | James                        |  | James                        |
+      | Helpdesk  |  | Helpdesk  |  | James                        |  | James                        |
+      | Marketing |  | Marketing |  | James                        |  | James                        |
+      | HR        |  | HR        |  | helpdesk9@cybertekschool.com |  | helpdesk9@cybertekschool.com |
+      | Helpdesk  |  | Helpdesk  |  | helpdesk9@cybertekschool.com |  | helpdesk9@cybertekschool.com |
+      | Marketing |  | Marketing |  | helpdesk9@cybertekschool.com |  | helpdesk9@cybertekschool.com |
 
 
 

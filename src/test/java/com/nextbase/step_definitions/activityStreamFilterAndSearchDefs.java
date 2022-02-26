@@ -112,7 +112,7 @@ public class activityStreamFilterAndSearchDefs {
 
     @Then("user should see {string} activities on Activity Stream {string}")
     public void user_should_see_activities_on_Activity_Stream(String usersName, String Author) {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(1);
         WebElement bar = Driver.get().findElement(By.xpath("(//div[@class='main-ui-square-item'])[1]"));
         //Assert.assertTrue(bar.getText().equalsIgnoreCase(usersName));
         String expectedName = Author + ": " + usersName;
