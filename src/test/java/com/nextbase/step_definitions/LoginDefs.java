@@ -86,7 +86,7 @@ public class LoginDefs {
                 password =  " ";
             }
         }
-        BrowserUtils.waitFor(1);
+
         new LoginPage().login(username,password);
     }
 
@@ -94,7 +94,7 @@ public class LoginDefs {
     public void the_user_should_not_be_able_to_login() {
         LoginPage loginn = new LoginPage();
 
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(1);
         String actualMessage = loginn.errorMessage();
         Assert.assertEquals("Incorrect login or password",actualMessage);
 
@@ -116,11 +116,37 @@ public class LoginDefs {
     public void the_Error_message_should_be(String string) {
         LoginPage loginn = new LoginPage();
 
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(1);
         String actualMessage = loginn.errorMessage();
         Assert.assertEquals("Please try again after one minute",actualMessage);
     }
 
+    @When("the user enters the HR information")
+    public void the_user_enters_the_HR_information() {
+
+        String username = ConfigurationReader.get("HR_username");
+        String password = ConfigurationReader.get("HR_password");
+
+        new LoginPage().login(username,password);
+    }
+
+    @When("the user enters the helpdesk information")
+    public void the_user_enters_the_helpdesk_information() {
+
+        String username = ConfigurationReader.get("Helpdesk_username");
+        String password = ConfigurationReader.get("Helpdesk_password");
+
+        new LoginPage().login(username,password);
+    }
+
+    @When("the user enters the marketing information")
+    public void the_user_enters_the_marketing_information() {
+
+        String username = ConfigurationReader.get("Marketing_username");
+        String password = ConfigurationReader.get("Marketing_password");
+
+        new LoginPage().login(username,password);
+    }
 
 
 
