@@ -1,5 +1,5 @@
 
-@wip
+@MyProfileFeature
 Feature: Display Edit User Profile and Contact Information
 
   Scenario Outline: User should be able to display Edit User Profile
