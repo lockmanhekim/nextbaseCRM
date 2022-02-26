@@ -1,4 +1,4 @@
-Feature: Default
+Feature: User should be able to filter and search on Activity Stream.
 
 	#US : As a user, I should be able to filter and search on Activity Stream; so that I can find what I want.
 	#1. User can search by Author
