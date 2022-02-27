@@ -44,9 +44,6 @@ public class TaskPage extends BasePage{
     }
 
 
-        public void getText () {
-            System.out.println(StatusInprogressButton.getText());
 
-        }
 
 }
