@@ -8,7 +8,6 @@ public class MyProfilePage extends BasePage{
     @FindBy(xpath= "//td[text()='Contact information']")
     public WebElement contactInformation;
 
-
     @FindBy(css = ".user-profile-events-item.user-profile-edit")
     public WebElement editProfileActions;
 

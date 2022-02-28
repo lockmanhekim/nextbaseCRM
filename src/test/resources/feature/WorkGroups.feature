@@ -1,10 +1,10 @@
-@wip
+@wip @ysf
 Feature: Joining the Working Groups
 
   Background:
     Given the user is on the login page
 
-  Scenario Outline:<user> should able to join <open workgroup>
+  Scenario Outline:Verify that <user> should able to join <open workgroup>
     When the user enters the "<user>" information
     Then the user should be able to login
     When the user click on Workgroups
@@ -21,7 +21,7 @@ Feature: Joining the Working Groups
       | Marketing | Corporate Christmas Party |
       | Marketing | Soccer team               |
 
-  Scenario Outline: <user> should able to join private workgroup
+  Scenario Outline: Verify that <user> should able to join private workgroup
     When the user enters the "<user>" information
     Then the user should be able to login
     When the user click on Workgroups
@@ -41,7 +41,7 @@ Feature: Joining the Working Groups
       | Marketing | Sales              |
       | Marketing | Technology         |
 
-  Scenario Outline: <user> should able to add favorite the <workgroup>
+  Scenario Outline: Verify that <user> should able to add favorite the <workgroup>
     When the user enters the "<user>" information
     Then the user should be able to login
     When the user click on Workgroups

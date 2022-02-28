@@ -11,7 +11,6 @@ import java.util.List;
 
 public class WorkgroupsPage extends BasePage{
 
-
     @FindBy(css = "[title='Workgroups']")
     public WebElement workGroupsButton;
 

@@ -1,5 +1,5 @@
 
-      @wip
+
     Feature: the user should be able to find contacts, documents and more using the top page search bar
 
       Background:

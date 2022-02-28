@@ -4,6 +4,7 @@ import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 public class ActivityStreamPage extends BasePage {
@@ -24,6 +25,25 @@ public class ActivityStreamPage extends BasePage {
     public WebElement sendMessageButtonOnActivityStream;
     @FindBy(xpath = "(//div[@class = 'feed-post-text-block-inner-inner'])[1]")
     public WebElement firstPostOnActivityStreamText;
+
+
+    @FindBy (id = "LIVEFEED_search")
+    public WebElement ASFilterAndSearchButton ;
+
+    @FindBy (xpath = "//input[@name='TO_label']")
+    public WebElement filterAndSearchTO;
+
+    @FindBy (xpath = "//input[@name='CREATED_BY_ID_label']")
+    public WebElement filterAndSearchAuthor;
+
+
+
+
+
+
+
+
+
     public void sendMessage(String message){
         WebElement messageInput = Driver.get().switchTo().frame(iframe_1_onActivityStreamPage).findElement(By.xpath("//html//body"));
         messageInput.sendKeys(message);
