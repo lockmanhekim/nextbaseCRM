@@ -1,7 +1,7 @@
 
-@MyProfileFeature
+@NEXTBASE-816
 Feature: Display Edit User Profile and Contact Information
-
+  @NEXTBASE-814
   Scenario Outline: User should be able to display Edit User Profile
     Given User is logged in as "<userType>"
     When click username icon
@@ -12,7 +12,7 @@ Feature: Display Edit User Profile and Contact Information
       | HR        |
       | Helpdesk  |
       | Marketing |
-
+  @NEXTBASE-815
   Scenario Outline: User should be able to display Contact Information
     Given User is logged in as "<userType>"
     When click My Profile
