@@ -1,5 +1,6 @@
 package com.nextbase.step_definitions;
 
+import com.nextbase.pages.CalendarPage;
 import com.nextbase.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
