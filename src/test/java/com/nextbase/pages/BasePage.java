@@ -23,4 +23,9 @@ public abstract class BasePage {
     public WebElement myProfileMenu;
 
 
+    @FindBy(xpath = "//*[@title=\"Calendar\"]")
+    public WebElement calendarLink;
+
+
+
 }
