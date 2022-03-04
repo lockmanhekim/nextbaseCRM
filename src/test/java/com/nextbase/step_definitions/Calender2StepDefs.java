@@ -1,14 +1,19 @@
 package com.nextbase.step_definitions;
 
+import com.nextbase.pages.CalendarPage;
+import com.nextbase.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.interactions.Actions;
 
 public class Calender2StepDefs {
 
+    CalendarPage calendar = new CalendarPage();
+
     @When("the user navigate to calender page")
     public void the_user_navigate_to_calender_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        new Actions(Driver.get()).moveToElement(calendar.Calendar).pause(200).doubleClick(calendar.Calendar).build().perform();
     }
 
     @When("the user click ADD")

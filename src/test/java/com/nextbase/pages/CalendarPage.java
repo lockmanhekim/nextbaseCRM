@@ -14,4 +14,8 @@ public class CalendarPage extends BasePage{
 
     @FindBy(css = "#pagetitle")
     public WebElement pageTitle2;
+
+    @FindBy(xpath = "(//*[@data-role='item-text'])[6]")
+    public WebElement Calendar;
+
 }
