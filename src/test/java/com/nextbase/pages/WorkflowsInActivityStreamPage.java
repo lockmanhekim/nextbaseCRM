@@ -12,6 +12,12 @@ public class WorkflowsInActivityStreamPage extends BasePage{
     }
 
     // Add button
-    By addButton = By.linkText("Add");
+   public By addButton = By.id("lists-title-action-add");
+
+    //These fields are common for all other pages that extend the WorkflowsInActivityStreamPage
+
+   public By title = By.name("NAME");
+
+    public By saveBtn = By.name("save");
 
 }

@@ -4,13 +4,9 @@ import com.nextbase.utilities.BrowserUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
-public class GeneralRequestsPage {
+public class GeneralRequestsPage extends WorkflowsInActivityStreamPage {
 
-    By title = By.name("NAME");
-
-    By description = By.name("PREVIEW_TEXT");
-
-    By saveBtn = By.name("save");
+    public By description = By.name("PREVIEW_TEXT");
 
     // selects priority level from dropdown. The priority level text needs to be provided as a parameter
     // Low, Medium, High, (not set)

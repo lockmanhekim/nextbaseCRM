@@ -32,12 +32,12 @@ public abstract class BasePage {
 
     // A left more button to show Applications and Workflows
 
-    By leftMenuMoreBtn = By.id("left-menu-more-btn");
+   public By leftMenuMoreBtn = By.id("left-menu-more-btn");
 
     // A method to get tabs from the menu on the left. Provide link text as a parameter
 
     public void getTab(String linkname){
-        By tab = By.linkText(linkname);
+        By tab = By.xpath("//a[@title='"+linkname+"']");
         BrowserUtils.click(tab);
     }
 }

@@ -7,7 +7,7 @@ public class WorkflowsPage extends BasePage{
 
     //Refuse the request link
 
-    By refuseLink = By.linkText("Refuse");
+   public By refuseLink = By.xpath("//a[@class = 'bp-button bp-button bp-button-decline']");
 
     // Switch between tabs in WorkflowsPage
     public void getTab(String linkname){
