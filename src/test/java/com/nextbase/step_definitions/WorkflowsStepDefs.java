@@ -7,6 +7,7 @@ import com.nextbase.pages.WorkflowsPage;
 import com.nextbase.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class WorkflowsStepDefs {
 
@@ -62,5 +63,9 @@ public class WorkflowsStepDefs {
     @Then("the user refuses the request under Workflow Tasks")
     public void the_user_refuses_the_request_under_Workflow_Tasks() {
         BrowserUtils.click(new WorkflowsPage().refuseLink);
+    }
+    @Then("the error message {string} should be displayed under Workflows in Activity Stream tab for General Requests")
+    public void the_error_message_should_be_displayed_under_Workflows_in_Activity_Stream_tab_for_General_Requests(String errorMessage) {
+        Assert.assertEquals("Verifying the error message",errorMessage, BrowserUtils.getElement(new GeneralRequestsPage().errorMessage).getText());
     }
 }
