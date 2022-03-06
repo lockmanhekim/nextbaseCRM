@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 public class CalendarPage extends BasePage{
 
 
-    @FindBy(xpath = "//*[@class=\"main-buttons-item-text-title\"][1]")
+    @FindBy(xpath = "//*[@class='main-buttons-item-text-title'][1]")
     public WebElement myCalendarTab;
 
     @FindBy(css = "#top_menu_id_calendar_menu_company_calendar > a")
@@ -18,4 +18,9 @@ public class CalendarPage extends BasePage{
     @FindBy(xpath = "(//*[@data-role='item-text'])[6]")
     public WebElement Calendar;
 
+    @FindBy(xpath = "//*[@class='ui-btn-main']")
+    public WebElement add;
+
+    @FindBy( xpath = "//*[@id='calendar_slider_390196_date_from']")
+    public WebElement dateBox;
 }

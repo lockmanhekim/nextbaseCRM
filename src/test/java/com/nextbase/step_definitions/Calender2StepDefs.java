@@ -17,14 +17,21 @@ public class Calender2StepDefs {
     }
 
     @When("the user click ADD")
-    public void the_user_click_ADD() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_user_click_ADD() throws InterruptedException {
+
+        new Actions(Driver.get()).moveToElement(calendar.add).pause(200).doubleClick(calendar.add).build().perform();
+        Thread.sleep(1000);
     }
     @When("the user fill necessary sections")
-    public void the_user_fill_necessary_sections() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    public void the_user_fill_necessary_sections() throws InterruptedException {
+        
+        calendar.dateBox.sendKeys("25082022");
+        Thread.sleep(2000);
+
+
+
+
+
     }
     @When("the user click SAVE")
     public void the_user_click_SAVE() {
