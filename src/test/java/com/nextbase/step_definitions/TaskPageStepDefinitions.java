@@ -1,10 +1,15 @@
 package com.nextbase.step_definitions;
 
 import com.nextbase.pages.TaskPage;
+import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class TaskPageStepDefinitions {
 
@@ -71,12 +76,74 @@ public class TaskPageStepDefinitions {
                    break;
            }
 
-
-
-
-
-
    }
+    @Then("clicks New Task button")
+    public void clicks_New_Task_button() {
+        taskPage.newTaskButton.click();
+
+    }
+
+    @Then("fills {string} in Things to do box")
+    public void fills_in_Things_to_do_box(String taskName) {
+
+        Driver.get().switchTo().frame(taskPage.iframe);
+
+        taskPage.setTaskName.sendKeys(taskName);
+
+
+    }
+
+    @Then("checks High Priority check box")
+    public void checks_High_Priority_check_box() {
+        BrowserUtils.selectCheckBox(taskPage.highPriorityCheckbox,true);
+        Assert.assertTrue(taskPage.highPriorityCheckbox.isSelected());
+
+    }
+
+    @Then("clicks person icon and selects {string} to mention")
+    public void clicks_person_icon_and_selects_to_mention(String string) {
+        taskPage.addMention.click();
+        taskPage.marketing1UserMail.click();
+
+
+    }
+
+    @Then("clicks to add more button in Responsible person box")
+    public void clicks_to_add_more_button_in_Responsible_person_box() {
+        taskPage.addMoreButtonR.click();
+    }
+
+    @Then("user selects a {string}")
+    public void user_selects_a(String string) {
+        taskPage.marketing3UserMail.click();
+        taskPage.nameSelector.click();
+
+    }
+
+    @When("user clicks to Deadline box")
+    public void user_clicks_to_Deadline_box() {
+        BrowserUtils.clickWithJS(taskPage.deadlineBox);
+        taskPage.monthSelect.click();
+        System.out.println(taskPage.monthsDropDown.size());
+
+        BrowserUtils.clickWithJS(taskPage.yearSelect);
+        System.out.println(taskPage.yearDropDown.size());
+
+
+    }
+
+    @Then("user selects a {string} and clicks select")
+    public void user_selects_a_and_clicks_select(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("clicks to  Add Task to create the task")
+    public void clicks_to_Add_Task_to_create_the_task() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 
 
 
