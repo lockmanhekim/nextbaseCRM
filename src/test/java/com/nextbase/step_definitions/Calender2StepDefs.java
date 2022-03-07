@@ -1,10 +1,14 @@
 package com.nextbase.step_definitions;
 
 import com.nextbase.pages.CalendarPage;
+import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.Calendar;
 
 public class Calender2StepDefs {
 
@@ -24,9 +28,57 @@ public class Calender2StepDefs {
     }
     @When("the user fill necessary sections")
     public void the_user_fill_necessary_sections() throws InterruptedException {
-        
-        calendar.dateBox.sendKeys("25082022");
-        Thread.sleep(2000);
+
+        calendar.dateBox.click();
+
+        calendar.monthIcon.click();
+
+        calendar.months.get(6).click();
+        BrowserUtils.waitFor(1);
+
+        calendar.day25.click();
+
+        calendar.dateBox2.click();
+        BrowserUtils.waitFor(1);
+
+        calendar.monthIcon2.click();
+        BrowserUtils.waitFor(1);
+
+        calendar.months2.get(11).click();
+        BrowserUtils.waitFor(1);
+
+        calendar.day30.click();
+        BrowserUtils.waitFor(1);
+
+        calendar.timeZoneIcon.click();
+        BrowserUtils.waitFor(1);
+
+        Select time1 = new Select(calendar.timeZoneSelect1);
+
+        time1.selectByIndex(45);
+        BrowserUtils.waitFor(1);
+
+        Select time2 = new Select(calendar.timeZoneSelect2);
+
+        time2.selectByIndex(45);
+        BrowserUtils.waitFor(1);
+
+        calendar.locationIcon.click();
+        BrowserUtils.waitFor(1);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
