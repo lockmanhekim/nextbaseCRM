@@ -68,7 +68,7 @@ public class TaskPage extends BasePage {
     public WebElement deadlineBox;
 
     @FindBy (css = "[class*=bx-calendar-top-month]")
-    public WebElement monthSelect;
+    public WebElement monthSelectButton;
 
     @FindAll({
         @FindBy (xpath = "//*[@class='bx-calendar-month']"),
@@ -76,8 +76,12 @@ public class TaskPage extends BasePage {
     })
     public List<WebElement> monthsDropDown;
 
+
+
+
+
     @FindBy(xpath = "//*[@class='bx-calendar-top-year']")
-    public WebElement yearSelect;
+    public WebElement yearSelectButton;
 
     @FindAll({
             @FindBy(xpath = "//*[@class='bx-calendar-year-number']"),
@@ -85,8 +89,38 @@ public class TaskPage extends BasePage {
     })
     public List <WebElement> yearDropDown;
 
+    @FindBy (xpath = "//*[@class='bx-calendar-year-input']")
+    public WebElement yearInput;
+
+    @FindBy (xpath = "(//*[@class='bx-calendar-form-input']) [1]")
+    public WebElement timeHoursInput;
+
+    @FindBy (xpath = "(//*[@class='bx-calendar-form-input']) [2]")
+    public WebElement timeMinutesInput;
+
+    @FindBy (xpath = "//*[@class='bx-calendar-AM-PM-text']")
+    public WebElement amOrPm;
+
+    @FindBy (xpath = "(//*[@class='bx-calendar-button-text']) [1]")
+    public WebElement selectDeadlineButton;
+
+    @FindBy (xpath = "(//*[@class='bx-calendar-button-text']) [2]")
+    public WebElement closeDeadlineButton;
+
+    @FindBy (xpath = "//*[@class='ui-btn ui-btn-success']")
+    public WebElement addTaskButton;
+    //For selecting specific date
 
 
+    @FindBy (xpath = "//*[@class='bx-calendar-cell']")
+    public WebElement allDay;
+          //  @FindBy (xpath = "//*[@class='bx-calendar-cell bx-calendar-weekend']"),
+
+    @FindBy (css = "[class*='bx-calendar-cell']")
+    public List <WebElement> daysList;
+
+        @FindBy (css = "[class*='bx-calendar-cell bx-calendar-date-hidden']")
+        public WebElement hidden;
 
     public void clickTaskButton() {
         tasksButton.click();
@@ -105,10 +139,29 @@ public class TaskPage extends BasePage {
     }
 
 
-    public void mentionPopUp () {
+
+    public void selectMonth (String month) {
+        BrowserUtils.clickWithJS(monthSelectButton);
+
+      BrowserUtils.clickWithJS(Driver.get().findElement(By.xpath("//span[contains(text(), '" +month+ "')]")));
+    }
+
+    public void selectYear (String year) {
+
+        BrowserUtils.clickWithJS(yearSelectButton);
+        yearInput.sendKeys(year);
+    }
+
+    public void selectDay (String day){
+
+
+
+
 
 
     }
+
+
 
 
 

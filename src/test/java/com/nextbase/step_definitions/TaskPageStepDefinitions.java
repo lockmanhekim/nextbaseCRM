@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -123,25 +124,34 @@ public class TaskPageStepDefinitions {
     @When("user clicks to Deadline box")
     public void user_clicks_to_Deadline_box() {
         BrowserUtils.clickWithJS(taskPage.deadlineBox);
-        taskPage.monthSelect.click();
-        System.out.println(taskPage.monthsDropDown.size());
 
-        BrowserUtils.clickWithJS(taskPage.yearSelect);
-        System.out.println(taskPage.yearDropDown.size());
+    }
+
+    @Then("selects {string}, {string}, {string}, {string},{string} and {string}")
+    public void selects_and(String month, String year, String day, String hour, String minutes, String ampm) {
+
+
 
 
     }
 
-    @Then("user selects a {string} and clicks select")
-    public void user_selects_a_and_clicks_select(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("clicks select to set deadline")
+    public void clicks_select_to_set_deadline() {
+        BrowserUtils.waitFor(2);
+
+
     }
+
+
+
+
 
     @Then("clicks to  Add Task to create the task")
     public void clicks_to_Add_Task_to_create_the_task() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        taskPage.deadlineBox.submit();
+
+
     }
 
 
