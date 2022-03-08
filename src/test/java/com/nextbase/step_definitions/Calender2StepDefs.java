@@ -5,6 +5,8 @@ import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -13,6 +15,7 @@ import java.util.Calendar;
 public class Calender2StepDefs {
 
     CalendarPage calendar = new CalendarPage();
+
 
     @When("the user navigate to calender page")
     public void the_user_navigate_to_calender_page() {
@@ -29,25 +32,20 @@ public class Calender2StepDefs {
     @When("the user fill necessary sections")
     public void the_user_fill_necessary_sections() throws InterruptedException {
 
-        calendar.dateBox.click();
-
-        calendar.monthIcon.click();
-
-        calendar.months.get(6).click();
+        calendar.dateBox1.clear();
+        calendar.dateBox1.sendKeys("08/25/2022");
         BrowserUtils.waitFor(1);
 
-        calendar.day25.click();
-
-        calendar.dateBox2.click();
+        calendar.clock1.clear();
+        calendar.clock1.sendKeys("01:10 pm");
         BrowserUtils.waitFor(1);
 
-        calendar.monthIcon2.click();
+        calendar.dateBox2.clear();
+        calendar.dateBox2.sendKeys("08/30/2022");
         BrowserUtils.waitFor(1);
 
-        calendar.months2.get(11).click();
-        BrowserUtils.waitFor(1);
-
-        calendar.day30.click();
+        calendar.clock2.clear();
+        calendar.clock2.sendKeys("02:10 pm");
         BrowserUtils.waitFor(1);
 
         calendar.timeZoneIcon.click();
@@ -66,30 +64,38 @@ public class Calender2StepDefs {
         calendar.locationIcon.click();
         BrowserUtils.waitFor(1);
 
+        //needed location info
 
+        BrowserUtils.scrollToElement(calendar.addIcon);
+        BrowserUtils.waitFor(1);
+        calendar.addIcon.click();
 
+        calendar.addingZone.sendKeys("marketing1@cybertekschool.com" + Keys.ENTER);
+        calendar.addIcon.click();
+        calendar.addingZone.sendKeys("helpdesk1@cybertekschool.com" + Keys.ENTER);
+        BrowserUtils.waitFor(1);
 
+        calendar.moreIcon.click();
 
+        // iframe içi
+        Driver.get().switchTo().frame(calendar.iframe);
 
+        BrowserUtils.scrollToElement(calendar.description);
 
+        calendar.description.sendKeys("MY_FIRST_DESCRIPTION_OF_BIRTHDAY");
+        BrowserUtils.waitFor(1);
 
-
-
-
-
-
-
-
-
-
+        Driver.get().switchTo().defaultContent();
+        // frameden çıktık
 
 
     }
     @When("the user click SAVE")
     public void the_user_click_SAVE() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       // calendar.save.click();
+        //BrowserUtils.waitFor(2);
     }
+
     @Then("the user should be able to add new important repeating event")
     public void the_user_should_be_able_to_add_new_important_repeating_event() {
         // Write code here that turns the phrase above into concrete actions
@@ -99,8 +105,8 @@ public class Calender2StepDefs {
 
     @When("the user search for AC's event's name")
     public void the_user_search_for_AC_s_event_s_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
     }
     @When("the user click the event")
     public void the_user_click_the_event() {

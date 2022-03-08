@@ -25,34 +25,16 @@ public class CalendarPage extends BasePage{
     public WebElement add;
 
     @FindBy( xpath = "(//*[@class='calendar-field calendar-field-datetime'])[1]")
-    public WebElement dateBox;
+    public WebElement dateBox1;
 
-    @FindBy( xpath = "(//*[@class='bx-calendar-top-month'])[2]")
-    public WebElement monthIcon;
-
-    @FindAll({
-            @FindBy ( xpath = "//*[@class='bx-calendar-month']"),
-            @FindBy ( xpath = "//*[@class='bx-calendar-month bx-calendar-month-active']")
-    })
-    public List<WebElement> months;
-
-    @FindBy( xpath = "((//*[@class='bx-calendar-range'])[9]//a)[5]")
-    public WebElement day25;
-
-    @FindBy( xpath = "((//*[@class='bx-calendar-range'])[10]//a)[3]")
-    public WebElement day30;
+    @FindBy( xpath = "(//*[@class='calendar-field calendar-field-datetime-menu'])[1]")
+    public WebElement clock1;
 
     @FindBy( xpath = "(//*[@class='calendar-field calendar-field-datetime'])[2]")
     public WebElement dateBox2;
 
-    @FindBy( xpath = "(//*[@class='bx-calendar-top-month'])[2]")
-    public WebElement monthIcon2;
-
-    @FindAll({
-            @FindBy( xpath = "//*[@class='bx-calendar-month']"),
-            @FindBy( xpath = "//*[@class='bx-calendar-month bx-calendar-month-active']")
-    })
-    public List<WebElement> months2;
+    @FindBy( xpath = "(//*[@class='calendar-field calendar-field-datetime-menu'])[2]")
+    public WebElement clock2;
 
     @FindBy( xpath = "//*[@class='calendar-options-timezone-collapse-btn']")
     public WebElement timeZoneIcon;
@@ -66,4 +48,23 @@ public class CalendarPage extends BasePage{
     @FindBy( xpath = "//*[@placeholder='Location']")
     public WebElement locationIcon;
 
+    //location needed here
+
+    @FindBy( xpath = "//*[@class='feed-add-destination-link']")
+    public WebElement addIcon;
+
+    @FindBy( xpath = "//*[@class='feed-add-destination-inp']")
+    public WebElement addingZone;
+
+    @FindBy( xpath = "//*[@class='calendar-additional-alt-more']")
+    public WebElement moreIcon;
+
+    @FindBy( xpath = "//*[@style='min-height: 104px;']")
+    public WebElement description;
+
+    @FindBy (xpath = "//*[@class='bx-editor-iframe']")
+    public  WebElement iframe;
+
+    @FindBy( css = "[id*='save_cmd']")
+    public WebElement save;
 }
