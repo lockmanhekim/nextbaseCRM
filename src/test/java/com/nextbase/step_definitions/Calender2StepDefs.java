@@ -64,7 +64,8 @@ public class Calender2StepDefs {
         calendar.locationIcon.click();
         BrowserUtils.waitFor(1);
 
-        //needed location info
+        calendar.locationWanted.click();
+        BrowserUtils.waitFor(1);
 
         BrowserUtils.scrollToElement(calendar.addIcon);
         BrowserUtils.waitFor(1);
@@ -92,8 +93,8 @@ public class Calender2StepDefs {
     }
     @When("the user click SAVE")
     public void the_user_click_SAVE() {
-       // calendar.save.click();
-        //BrowserUtils.waitFor(2);
+        calendar.save.click();
+        BrowserUtils.waitFor(2);
     }
 
     @Then("the user should be able to add new important repeating event")

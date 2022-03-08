@@ -48,7 +48,8 @@ public class CalendarPage extends BasePage{
     @FindBy( xpath = "//*[@placeholder='Location']")
     public WebElement locationIcon;
 
-    //location needed here
+    @FindBy( xpath = "(//*[@class='menu-popup-item-text'])[2]")
+    public WebElement locationWanted;
 
     @FindBy( xpath = "//*[@class='feed-add-destination-link']")
     public WebElement addIcon;
