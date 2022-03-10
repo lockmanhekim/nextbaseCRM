@@ -111,11 +111,13 @@ public class TaskPageStepDefinitions {
 
     @Then("clicks to add more button in Responsible person box")
     public void clicks_to_add_more_button_in_Responsible_person_box() {
+
         taskPage.addMoreButtonR.click();
     }
 
+
     @Then("user selects a {string}")
-    public void user_selects_a(String string) {
+    public void user_selects_a(String person) {
         taskPage.marketing3UserMail.click();
         taskPage.nameSelector.click();
 
@@ -130,14 +132,16 @@ public class TaskPageStepDefinitions {
     @Then("selects {string}, {string}, {string}, {string},{string} and {string}")
     public void selects_and(String month, String year, String day, String hour, String minutes, String ampm) {
 
-
-
+        taskPage.selectMonth(month);
+        taskPage.selectYear(year);
+        taskPage.findhiddenDays();
+        taskPage.selectDay(day);
 
     }
 
     @Then("clicks select to set deadline")
     public void clicks_select_to_set_deadline() {
-        BrowserUtils.waitFor(2);
+       // BrowserUtils.waitFor(2);
 
 
     }
@@ -149,7 +153,7 @@ public class TaskPageStepDefinitions {
     @Then("clicks to  Add Task to create the task")
     public void clicks_to_Add_Task_to_create_the_task() {
 
-        taskPage.deadlineBox.submit();
+       taskPage.deadlineBox.submit();
 
 
     }

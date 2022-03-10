@@ -5,12 +5,14 @@ import com.nextbase.utilities.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class TaskPage extends BasePage {
@@ -102,7 +104,7 @@ public class TaskPage extends BasePage {
     public WebElement amOrPm;
 
     @FindBy (xpath = "(//*[@class='bx-calendar-button-text']) [1]")
-    public WebElement selectDeadlineButton;
+    public WebElement submitDateDeadline;
 
     @FindBy (xpath = "(//*[@class='bx-calendar-button-text']) [2]")
     public WebElement closeDeadlineButton;
@@ -119,8 +121,25 @@ public class TaskPage extends BasePage {
     @FindBy (css = "[class*='bx-calendar-cell']")
     public List <WebElement> daysList;
 
-        @FindBy (css = "[class*='bx-calendar-cell bx-calendar-date-hidden']")
-        public WebElement hidden;
+
+
+
+
+
+    @FindAll({
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[1]"),
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[2]"),
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[3]"),
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[4]"),
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[5]"),
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[6]"),
+            @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[7]")
+    })
+    public List<WebElement> hiddenDaysList;
+
+
+    int counter=0;
+
 
     public void clickTaskButton() {
         tasksButton.click();
@@ -151,20 +170,35 @@ public class TaskPage extends BasePage {
         BrowserUtils.clickWithJS(yearSelectButton);
         yearInput.sendKeys(year);
     }
-
-    public void selectDay (String day){
-
-
-
-
-
-
+    public void findhiddenDays (){
+        for (int i=0; i<7;i++){
+            if (hiddenDaysList.get(i).getAttribute("class").contains("hidden") ){
+                counter++;
+            }
+        }
     }
 
 
+    public void selectDay(String day) {
+        int day1=Integer.parseInt(day);
+        int index=day1+counter;
 
+        BrowserUtils.clickWithJS(daysList.get(index));
+        BrowserUtils.clickWithJS(submitDateDeadline);
 
+    }
 
+    public void selectHour(String hour) {
+
+        timeHoursInput.sendKeys(hour);
+    }
+    public void selectMinutes(String minute){
+        timeMinutesInput.sendKeys(minute);
+    }
+
+    public void selectPersonResponsible(String person) {
+
+    }
 
 
 }
