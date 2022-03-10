@@ -116,11 +116,9 @@ public class TaskPageStepDefinitions {
     }
 
 
-    @Then("user selects a {string}")
+    @Then("user selects a {string} user")
     public void user_selects_a(String person) {
-        taskPage.marketing3UserMail.click();
-        taskPage.nameSelector.click();
-
+        taskPage.selectPersonResponsible(person);
     }
 
     @When("user clicks to Deadline box")
@@ -132,31 +130,111 @@ public class TaskPageStepDefinitions {
     @Then("selects {string}, {string}, {string}, {string},{string} and {string}")
     public void selects_and(String month, String year, String day, String hour, String minutes, String ampm) {
 
+        taskPage.selectHour(hour);
+        taskPage.selectMinutes(minutes);
         taskPage.selectMonth(month);
         taskPage.selectYear(year);
         taskPage.findhiddenDays();
         taskPage.selectDay(day);
 
+
     }
 
     @Then("clicks select to set deadline")
     public void clicks_select_to_set_deadline() {
-       // BrowserUtils.waitFor(2);
 
-
+        BrowserUtils.clickWithJS(taskPage.submitDateDeadline);
     }
-
-
-
-
 
     @Then("clicks to  Add Task to create the task")
     public void clicks_to_Add_Task_to_create_the_task() {
 
        taskPage.deadlineBox.submit();
+    }
+
+    @Then("clicks to {string}")
+    public void clicks_to(String taskname) {
+        taskPage.clicksTask(taskname);
+        BrowserUtils.waitFor(4);
 
 
     }
+
+    @Then("clicks to Edit button")
+    public void clicks_to_Edit_button() {
+        Driver.get().switchTo().frame(taskPage.iframe2);
+       BrowserUtils.clickWithJS(taskPage.editButton);
+        BrowserUtils.waitFor(4);
+    }
+
+    @Then("clicks to change in Responsible person box")
+    public void clicks_to_change_in_Responsible_person_box() {
+       BrowserUtils.clickWithJS(taskPage.changeResponsibleButton);
+
+    }
+
+    @Then("clicks to save changes")
+    public void clicks_to_save_changes() {
+        BrowserUtils.clickWithJS(taskPage.saveChangesButton);
+    }
+
+    @When("clicks More to display more settings")
+    public void clicks_More_to_display_more_settings() {
+
+        BrowserUtils.clickWithJS(taskPage.moreButton);
+
+    }
+
+    @Then("clicks Task Planned Time check box")
+    public void clicks_Task_Planned_Time_check_box() {
+       BrowserUtils.clickWithJS(taskPage.taskPlannedCheckBox);
+
+    }
+
+    @Then("enters {string} hours,{string} minutes to time tracking")
+    public void enters_hours_minutes_to_time_tracking(String hour, String minutes) {
+            BrowserUtils.clickWithJS(taskPage.timePlannedHour);
+            taskPage.timePlannedHour.sendKeys(hour);
+            BrowserUtils.clickWithJS(taskPage.timePlannedMinute);
+            taskPage.timePlannedMinute.sendKeys(minutes);
+
+    }
+    @Then("clicks to Add reminder")
+    public void clicks_to_Add_reminder() {
+        BrowserUtils.clickWithJS(taskPage.AddReminderButton);
+    }
+
+    @Then("selects {string}")
+    public void selects(String string) {
+       BrowserUtils.clickWithJS(taskPage.remindUsing);
+
+    }
+
+    @Then("selects email option")
+    public void selects_email_option() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("selects a {string}")
+    public void selects_a(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("clicks select")
+    public void clicks_select() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("clicks add")
+    public void clicks_add() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+
 
 
 

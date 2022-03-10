@@ -122,10 +122,6 @@ public class TaskPage extends BasePage {
     public List <WebElement> daysList;
 
 
-
-
-
-
     @FindAll({
             @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[1]"),
             @FindBy( xpath = "((//*[@class='bx-calendar-range'])//a)[2]"),
@@ -137,11 +133,46 @@ public class TaskPage extends BasePage {
     })
     public List<WebElement> hiddenDaysList;
 
+    @FindBy (linkText = "task23")
+     public WebElement task23;
+
+    @FindBy (xpath = "//*[@class='task-view-button edit ui-btn ui-btn-link']")
+     public WebElement editButton;
+
+    @FindBy (className = "side-panel-iframe")
+     public WebElement iframe2;
+
+    @FindBy (xpath = "(//*[@class='js-id-tdp-mem-sel-is-open-form task-form-field-link']) [1]")
+     public WebElement changeResponsibleButton;
+
+    @FindBy (xpath = "(//*[@class='ui-btn ui-btn-success']) [1]")
+     public WebElement saveChangesButton;
+
+    @FindBy(xpath = "//*[@class='task-additional-alt-more']")
+    public WebElement moreButton;
+
+    @FindBy (xpath = "//*[@class='task-field-label task-field-label-tm']")
+    public WebElement taskPlannedCheckBox;
+
+    @FindBy (xpath = "//*[@class='js-id-timeestimate-time js-id-timeestimate-hour task-options-inp']")
+    public WebElement timePlannedHour;
+
+    @FindBy(xpath = "//*[@class='js-id-timeestimate-time js-id-timeestimate-minute task-options-inp']")
+    public WebElement timePlannedMinute;
+
+    @FindBy (linkText = "Add reminder")
+    public WebElement AddReminderButton;
+
+    @FindBy (xpath = "(//*[@class='type-a-control'])[1]")
+    public WebElement remindUsing;
+
+
+
+
 
     int counter=0;
-
-
     public void clickTaskButton() {
+
         tasksButton.click();
     }
 
@@ -184,21 +215,44 @@ public class TaskPage extends BasePage {
         int index=day1+counter;
 
         BrowserUtils.clickWithJS(daysList.get(index));
-        BrowserUtils.clickWithJS(submitDateDeadline);
+
 
     }
 
     public void selectHour(String hour) {
 
+        BrowserUtils.clickWithJS(timeHoursInput);
         timeHoursInput.sendKeys(hour);
+
     }
     public void selectMinutes(String minute){
+        BrowserUtils.clickWithJS(timeMinutesInput);
         timeMinutesInput.sendKeys(minute);
     }
 
     public void selectPersonResponsible(String person) {
 
+        if (person.equalsIgnoreCase("marketing3")){
+            BrowserUtils.clickWithJS(marketing3UserMail);
+            BrowserUtils.clickWithJS(nameSelector);
+
+        }
+
     }
+    public void selectAmPm (String ampm){
+        if (ampm.equalsIgnoreCase("am")){
+            BrowserUtils.clickWithJS(amOrPm);
+        }
+
+
+    }
+    public void clicksTask(String taskname) {
+        BrowserUtils.clickWithJS(Driver.get().findElement(By.linkText(taskname)));
+
+    }
+
+
+
 
 
 }

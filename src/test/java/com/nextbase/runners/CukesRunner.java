@@ -11,8 +11,8 @@ import org.junit.runner.RunWith;
                 "rerun:target/rerun.txt"},
         features = "src/test/resources/feature",
         glue = "com/nextbase/step_definitions",
-        dryRun = false,
-        tags = "@NEXTBASE-858")
+        dryRun = true,
+        tags = "@NEXTBASE-861")
 
 public class CukesRunner {
 }
