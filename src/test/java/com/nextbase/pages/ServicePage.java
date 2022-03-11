@@ -11,10 +11,6 @@ import java.util.List;
 
 public class ServicePage extends BasePage{
 
-
-    @FindBy(linkText = "Services")
-    public WebElement services;
-
     @FindBy(linkText = "Meeting Room Booking Calendar View")
     public WebElement calendarView;
 
@@ -38,9 +34,6 @@ public class ServicePage extends BasePage{
 
     @FindBy(css = "[name='UF_CATEGORY_CODE']")
     public WebElement category;
-
-    @FindBy(id = "pagetitle")
-    public WebElement pageAfterSuggest;
 
     @FindBy(css = "[class='blog-post-text']")
     public WebElement postBlogText;
