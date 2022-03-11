@@ -7,7 +7,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -15,7 +14,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.List;
 
@@ -117,14 +115,16 @@ public class ServiceStepDefs {
 
         servicePage.search.sendKeys(str);
 
-        if(servicePage.problemsPlusIcon.getAttribute("title").equals("Like")){
+        if(servicePage.meetingsPlusIcon.getAttribute("title").equals("Like")){
             Driver.get().navigate().refresh();
-            BrowserUtils.clickWithJS(servicePage.problemsPlusIcon);
+            BrowserUtils.waitForClickablility(servicePage.meetingsPlusIcon,20);
+            BrowserUtils.clickWithJS(servicePage.meetingsPlusIcon);
+            BrowserUtils.waitFor(2);
         }else{
-            BrowserUtils.clickWithJS(servicePage.problemsMinusIcon);
+            BrowserUtils.clickWithJS(servicePage.meetingsMinusIcon);
             Driver.get().navigate().refresh();
-            BrowserUtils.waitForClickablility(servicePage.problemsPlusIcon,20);
-            BrowserUtils.clickWithJS(servicePage.problemsPlusIcon);
+            BrowserUtils.waitForClickablility(servicePage.meetingsPlusIcon,20);
+            BrowserUtils.clickWithJS(servicePage.meetingsPlusIcon);
             BrowserUtils.waitFor(2);
         }
     }
@@ -132,14 +132,14 @@ public class ServiceStepDefs {
     @When("the user Unlike {string} idea by clicking on minus icon")
     public void theUserUnlikeIdeaByClickingOnMinusIcon(String str) {
 
-        if(servicePage.problemsMinusIcon.getAttribute("title").equals("Unlike")){
+        if(servicePage.meetingsMinusIcon.getAttribute("title").equals("Unlike")){
             Driver.get().navigate().refresh();
-            BrowserUtils.clickWithJS(servicePage.problemsMinusIcon);
+            BrowserUtils.clickWithJS(servicePage.meetingsMinusIcon);
         }else{
-            BrowserUtils.clickWithJS(servicePage.problemsPlusIcon);
+            BrowserUtils.clickWithJS(servicePage.meetingsPlusIcon);
             Driver.get().navigate().refresh();
-            BrowserUtils.waitForClickablility(servicePage.problemsMinusIcon,20);
-            BrowserUtils.clickWithJS(servicePage.problemsMinusIcon);
+            BrowserUtils.waitForClickablility(servicePage.meetingsMinusIcon,20);
+            BrowserUtils.clickWithJS(servicePage.meetingsMinusIcon);
             BrowserUtils.waitFor(2);
         }
 
@@ -147,9 +147,18 @@ public class ServiceStepDefs {
 
     @Then("title should be Stop liking this item")
     public void titleShouldBeStopLikingThisItem() {
-        Assert.assertEquals("Stop liking this item", servicePage.problemsPlusIcon.getAttribute("title"));
+        Assert.assertEquals("Stop liking this item", servicePage.meetingsPlusIcon.getAttribute("title"));
     }
 
+    @When("the user hover over the {string}")
+    public void the_user_hover_over_the(String icon) {
+
+        if(icon.equals("plus icon")){
+           BrowserUtils.hover(servicePage.meetingsPlusIcon);
+        }else if(icon.equals("minus icon")){
+            BrowserUtils.hover(servicePage.meetingsMinusIcon);
+        }
+    }
 
     @And("sorted ideas by {string} listed by the most recent date")
     public void sortedIdeasByListedByTheMostRecentDate(String sortType) {
@@ -187,7 +196,7 @@ public class ServiceStepDefs {
     }
 
     @Then("the print page should be displayed")
-    public void the_print_page_should_be_displayed() throws AWTException {
+    public void the_print_page_should_be_displayed() {
 
         String currentWindowHandle = Driver.get().getWindowHandle();
 
@@ -201,28 +210,15 @@ public class ServiceStepDefs {
         Actions actions = new Actions(Driver.get());
         actions.sendKeys(Keys.ENTER).click();
 
-        /*
-
-        Set<String> windowHandles = Driver.get().getWindowHandles();
-        if (!windowHandles.isEmpty()) {
-            Driver.get().switchTo().window((String) windowHandles.toArray()[windowHandles.size() - 1]);
-        }
-
-        Actions actions = new Actions(Driver.get());
-        actions.sendKeys(Keys.ENTER).click();
-
-         */
-
       /*  Robot r = new Robot();
         r.keyPress(KeyEvent.VK_ENTER);
-
        */
 
     }
 
     @Then("title should be Stop unliking this item")
     public void titleShouldBeStopUnlikingThisItem() {
-        Assert.assertEquals("Stop Unliking this item", servicePage.problemsPlusIcon.getAttribute("title"));
+        Assert.assertEquals("Stop Unliking this item", servicePage.meetingsPlusIcon.getAttribute("title"));
     }
 
     @When("the user add following info to Lists")

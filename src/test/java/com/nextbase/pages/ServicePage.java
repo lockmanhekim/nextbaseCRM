@@ -1,7 +1,6 @@
 package com.nextbase.pages;
 
 import com.nextbase.utilities.Driver;
-import io.cucumber.java.eo.Do;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ServicePage extends BasePage{
 
@@ -53,11 +51,11 @@ public class ServicePage extends BasePage{
     @FindBy(className = "blog-error-text")
     public WebElement warningMessage;
 
-    @FindBy(xpath = "//a[contains(@id, 'rating-vote-BLOG_POST-943')][1]")
-    public WebElement problemsPlusIcon;
+    @FindBy(xpath = "//a[contains(@id, 'rating-vote-BLOG_POST-1142')][1]")
+    public WebElement meetingsPlusIcon;
 
-    @FindBy(xpath = "//a[contains(@id, 'rating-vote-BLOG_POST-943')][2]")
-    public WebElement problemsMinusIcon;
+    @FindBy(xpath = "//a[contains(@id, 'rating-vote-BLOG_POST-1142')][2]")
+    public WebElement meetingsMinusIcon;
 
     @FindBy(id = "bx-idea-lifesearch-field")
     public WebElement search;
