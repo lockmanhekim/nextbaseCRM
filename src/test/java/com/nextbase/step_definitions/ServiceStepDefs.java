@@ -156,7 +156,7 @@ public class ServiceStepDefs {
         if(icon.equals("plus icon")){
            BrowserUtils.hover(servicePage.meetingsPlusIcon);
         }else if(icon.equals("minus icon")){
-            BrowserUtils.hover(servicePage.meetingsMinusIcon);
+           BrowserUtils.hover(servicePage.meetingsMinusIcon);
         }
     }
 
@@ -166,15 +166,12 @@ public class ServiceStepDefs {
         if(sortType.equals("date added")) {
 
             List<String> expectedDates = servicePage.getDates();
-            //System.out.println("expectedDates = " + expectedDates.toString());
             Collections.sort(expectedDates);
             Collections.reverse(expectedDates);
 
             servicePage.dateAddedSort.click();
 
             List<String> actualDates = servicePage.getDates();
-            // System.out.println("actualDates = " + actualDates.toString());
-
             Assert.assertEquals(expectedDates, actualDates);
 
         }else if(sortType.equals("rating")){
@@ -228,7 +225,4 @@ public class ServiceStepDefs {
             servicePage.listContent.sendKeys(eachData);
         }
     }
-
-
 }
-
