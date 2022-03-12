@@ -120,4 +120,29 @@ public class CalendarPage extends BasePage{
     @FindBy(xpath = "(//*[@class='calendar-slider-detail-option-value'])[1]")
     public WebElement availability;
 
+    @FindBy( css = "[class*='calendar-head-area-title-name']")
+    public WebElement eventTitle;
+
+    @FindBy(css = "[placeholder*='Event']")
+    public WebElement changeEventTitle;
+
+    @FindBy(xpath = "//select[@name='EVENT_RRULE[FREQ]']")
+    public WebElement repeat;
+
+    @FindBy( xpath = "(//*[@class='feed-event-del-but'])[2]")
+    public WebElement delMarketingUser;
+
+    @FindBy(xpath = "(//*[@class='calendar-planner-entry-name'])[2]")
+    public WebElement displayMarketingUser;
+
+    @FindBy(xpath = "(//*[@class='calendar-planner-entry-name'])[3]")
+    public WebElement displayMarketingUser2;
+
+    @FindBy(xpath = "(//*[@class='main-ui-filter-sidebar-item-text'])[2]")
+    public WebElement invitationIcon;
+
+    @FindBy(xpath = "//*[@class='calendar-timeline-stream-content-event-name-link']")
+    public WebElement newinvi;
+
+
 }

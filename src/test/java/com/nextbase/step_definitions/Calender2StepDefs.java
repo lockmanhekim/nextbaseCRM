@@ -1,5 +1,6 @@
 package com.nextbase.step_definitions;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.Color;
 import com.nextbase.pages.CalendarPage;
 import com.nextbase.utilities.BrowserUtils;
@@ -33,7 +34,7 @@ public class Calender2StepDefs {
     }
 
     @When("the user fill necessary sections")
-    public void the_user_fill_necessary_sections() throws InterruptedException {
+    public void the_user_fill_necessary_sections() {
 
         calendar.importantIcon.click();
 
@@ -208,17 +209,13 @@ public class Calender2StepDefs {
         BrowserUtils.waitFor(2);
 
     }
-    @Then("verify that user should be able to edit his\\/her availability from {string} to {string}.")
-    public void verify_that_user_should_be_able_to_edit_his_her_availability_from_to(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
 
     @When("the user change event's name")
     public void the_user_change_event_s_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        calendar.changeEventTitle.clear();
+        calendar.changeEventTitle.sendKeys("Lokman");
+        BrowserUtils.waitFor(1);
     }
 
     @Then("verify that user should be able to edit his\\/her event's name.")
@@ -230,38 +227,73 @@ public class Calender2StepDefs {
 
     @When("the user delete attendee")
     public void the_user_delete_attendee() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.delMarketingUser);
+        calendar.delMarketingUser.click();
     }
 
     @Then("verify that user should be able to delete attendee by editing the event.")
     public void verify_that_user_should_be_able_to_delete_attendee_by_editing_the_event() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.click();
+        calendar.I_Am_Organizer.click();
+        BrowserUtils.waitFor(2);
+
+        calendar.searchedColorIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.openIcon);
+        calendar.openIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.displayMarketingUser);
+        String marketing = calendar.displayMarketingUser.getText();
+
+        Assert.assertFalse(marketing.equalsIgnoreCase("marketing1@cybertekschool.com"));
     }
 
 
     @When("the user add attendee")
     public void the_user_add_attendee() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.addIcon);
+        BrowserUtils.waitFor(1);
+        calendar.addIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.addingZone);
+        calendar.addingZone.sendKeys("marketing1@cybertekschool.com" + Keys.ENTER);
+        calendar.addIcon.click();
+
     }
 
     @Then("verify that user should be able to add attendee by editing the event.")
     public void verify_that_user_should_be_able_to_add_attendee_by_editing_the_event() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.click();
+        calendar.I_Am_Organizer.click();
+        BrowserUtils.waitFor(2);
+
+        calendar.searchedColorIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.openIcon);
+        calendar.openIcon.click();
+
+        String actualMarketingUser= calendar.displayMarketingUser2.getText();
+
+        Assert.assertEquals("same","marketing1@cybertekschool.com",actualMarketingUser);
+
     }
 
     @When("the user click Filter and search")
     public void the_user_click_Filter_and_search() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        BrowserUtils.waitFor(1);
+        calendar.filterAndSearchBox.click();
     }
     @When("the user click I'M AN ORGANISER")
     public void the_user_click_I_M_AN_ORGANISER() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitFor(1);
+        calendar.I_Am_Organizer.click();
     }
 
 
@@ -273,8 +305,11 @@ public class Calender2StepDefs {
 
     @When("the user click Invitation")
     public void the_user_click_Invitation() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        calendar.filterAndSearchBox.click();
+        BrowserUtils.waitFor(1);
+        BrowserUtils.clickWithJS(calendar.invitationIcon);
+        BrowserUtils.waitFor(1);
     }
 
     @When("the user click Search")
@@ -295,8 +330,11 @@ public class Calender2StepDefs {
 
     @Then("verify that user should be able display the invitations by using Filter and search box after clicking Invitations button.")
     public void verify_that_user_should_be_able_display_the_invitations_by_using_Filter_and_search_box_after_clicking_Invitations_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitFor(1);
+        String actualTitle = calendar.newinvi.getText();
+
+        Assert.assertEquals("same","New Event",actualTitle);
     }
 
     @When("the user select Yes under Event with participants menu and Invited")
@@ -323,38 +361,57 @@ public class Calender2StepDefs {
 
         Assert.assertEquals("Private Event", "Private Event",a);
 
-
-
-    }
-
-    @Then("verify that user should be able to edit his\\/her availability from Occupied to Unsure.")
-    public void verify_that_user_should_be_able_to_edit_his_her_availability_from_Occupied_to_Unsure() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("the user select Repeat section as Daily")
     public void the_user_select_Repeat_section_as_Daily() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        Select repeat = new Select(calendar.repeat);
+        repeat.selectByIndex(1);
+        BrowserUtils.waitFor(2);
+
+
     }
 
     @Then("veriy that user should be able to edit Repeat section as Daily.")
     public void veriy_that_user_should_be_able_to_edit_Repeat_section_as_Daily() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        Alert alert = Driver.get().switchTo().alert();
+        System.out.println(alert.getText()); //Print Alert popup
+        alert.accept(); //Close Alert popup
+        BrowserUtils.waitFor(3);
+        System.out.println("olmuyor");
     }
 
     @Then("verify that user should be able display the events by using Filter and search box after clicking I'M AN ORGANISER button.")
     public void verify_that_user_should_be_able_display_the_events_by_using_Filter_and_search_box_after_clicking_I_M_AN_ORGANISER_button() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitFor(1);
+        String actualTitle = calendar.newinvi.getText();
+
+        Assert.assertEquals("same","Lokman",actualTitle);
+
     }
 
     @Then("verify that user should be able to edit his or her event's name.")
     public void verify_that_user_should_be_able_to_edit_his_or_her_event_s_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.click();
+        calendar.I_Am_Organizer.click();
+        BrowserUtils.waitFor(2);
+
+        calendar.searchedColorIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.openIcon);
+        calendar.openIcon.click();
+
+        String realTitle= calendar.eventTitle.getText();
+
+        Assert.assertEquals("see","Lokman",realTitle);
+
+
     }
 
     @Then("verify that Marketing user can't display the 3rd AC's private event on his or her calendar.")
