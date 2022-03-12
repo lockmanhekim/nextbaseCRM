@@ -1,16 +1,18 @@
 package com.nextbase.step_definitions;
 
+import org.openqa.selenium.support.Color;
 import com.nextbase.pages.CalendarPage;
 import com.nextbase.utilities.BrowserUtils;
 import com.nextbase.utilities.Driver;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.JavascriptExecutor;
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Calendar;
+import java.awt.*;
+import java.util.Arrays;
 
 public class Calender2StepDefs {
 
@@ -29,8 +31,14 @@ public class Calender2StepDefs {
         new Actions(Driver.get()).moveToElement(calendar.add).pause(200).doubleClick(calendar.add).build().perform();
         Thread.sleep(1000);
     }
+
     @When("the user fill necessary sections")
     public void the_user_fill_necessary_sections() throws InterruptedException {
+
+        calendar.importantIcon.click();
+
+        calendar.eventName.clear();
+        calendar.eventName.sendKeys("Lokman's event");
 
         calendar.dateBox1.clear();
         calendar.dateBox1.sendKeys("08/25/2022");
@@ -91,6 +99,7 @@ public class Calender2StepDefs {
 
 
     }
+
     @When("the user click SAVE")
     public void the_user_click_SAVE() {
         calendar.save.click();
@@ -99,59 +108,105 @@ public class Calender2StepDefs {
 
     @Then("the user should be able to add new important repeating event")
     public void the_user_should_be_able_to_add_new_important_repeating_event() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
+        BrowserUtils.waitFor(1);
+        calendar.filterAndSearchBox.click();
+        calendar.I_Am_Organizer.click();
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(calendar.searchedEvent.isDisplayed());
+
     }
 
 
     @When("the user search for AC's event's name")
     public void the_user_search_for_AC_s_event_s_name() {
 
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.sendKeys("Lokman" + Keys.ENTER);
 
+        BrowserUtils.waitFor(4);
     }
+
     @When("the user click the event")
     public void the_user_click_the_event() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitForVisibility(calendar.searchedEvent, 4);
+        calendar.searchedEvent.click();
     }
+
     @When("the user click EDIT")
     public void the_user_click_EDIT() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.editIcon);
+        calendar.editIcon.click();
+
     }
+
     @When("the user click MORE")
     public void the_user_click_MORE() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.moreIcon);
+        BrowserUtils.waitFor(2);
+        calendar.moreIcon.click();
     }
+
     @When("the user click OTHER COLOR")
     public void the_user_click_OTHER_COLOR() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        calendar.otherColorIcon.click();
+        BrowserUtils.waitFor(2);
+
     }
+
     @When("the user select color of Navy Blue")
     public void the_user_select_color_of_Navy_Blue() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.clickWithJS(calendar.otherColorIcon);
+
+        BrowserUtils.clickWithJS(calendar.navyColorIcon);
+
+        BrowserUtils.waitFor(1);
+
     }
 
     @Then("the user should be able to edit the 1st AC's task color.")
     public void the_user_should_be_able_to_edit_the_1st_AC_s_task_color() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.clear();
+        calendar.filterAndSearchBox.sendKeys("lokman" + Keys.ENTER);
+        BrowserUtils.waitFor(2);
+
+        BrowserUtils.scrollToElement(calendar.searchedColorIcon);
+        String att =calendar.searchedColorIcon.getAttribute("style");
+        System.out.println(att);
+        System.out.println("sdfsasdfgfdgx");
+
+        Assert.assertTrue(att.contains("rgb(0, 0, 255)"));
+
+
     }
 
     @When("the user click Private event")
     public void the_user_click_Private_event() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        calendar.privateIcon.click();
     }
 
 
     @When("select Availability as Unsure")
     public void select_Availability_as_Unsure() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.accesBox);
+        Select occu = new Select(calendar.accesBox);
+
+        occu.selectByIndex(1);
+        BrowserUtils.waitFor(2);
+
+        calendar.save.click();
+        BrowserUtils.waitFor(2);
+
     }
     @Then("verify that user should be able to edit his\\/her availability from {string} to {string}.")
     public void verify_that_user_should_be_able_to_edit_his_her_availability_from_to(String string, String string2) {
@@ -252,8 +307,24 @@ public class Calender2StepDefs {
 
     @Then("Verify that user should be able to edit the 1st AC's privacy as Private event.")
     public void verify_that_user_should_be_able_to_edit_the_1st_AC_s_privacy_as_Private_event() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.click();
+        calendar.I_Am_Organizer.click();
+        BrowserUtils.waitFor(2);
+
+        calendar.searchedColorIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.openIcon);
+        calendar.openIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.privateText);
+        String a= calendar.privateText.getText();
+
+        Assert.assertEquals("Private Event", "Private Event",a);
+
+
+
     }
 
     @Then("verify that user should be able to edit his\\/her availability from Occupied to Unsure.")
@@ -288,14 +359,34 @@ public class Calender2StepDefs {
 
     @Then("verify that Marketing user can't display the 3rd AC's private event on his or her calendar.")
     public void verify_that_Marketing_user_can_t_display_the_3rd_AC_s_private_event_on_his_or_her_calendar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        Assert.assertFalse(calendar.searchedEvent.isDisplayed());
+
     }
 
     @Then("verify that user should be able to edit his or her availability from Occupied to Unsure.")
     public void verify_that_user_should_be_able_to_edit_his_or_her_availability_from_Occupied_to_Unsure() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.waitForVisibility(calendar.filterAndSearchBox, 5);
+        calendar.filterAndSearchBox.clear();
+        calendar.filterAndSearchBox.sendKeys("lokman" + Keys.ENTER);
+        BrowserUtils.waitFor(2);
+
+        calendar.searchedEvent.click();
+
+        BrowserUtils.scrollToElement(calendar.openIcon);
+        calendar.openIcon.click();
+
+        BrowserUtils.scrollToElement(calendar.availability);
+        calendar.availability.getText();
+
+        Assert.assertTrue(calendar.availability.getText().equalsIgnoreCase("Undecided"));
+
+
+
+
+
+
     }
 
 

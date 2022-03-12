@@ -1,21 +1,6 @@
 @NEXTBASE-885
 Feature: Default
 
-	#*US:* As a user, I should be able to navigate "Calendar" page so that user can filter and search, display, add and track the tasks or events either on "Calendar" page.
-	#
-	#*Acceptance Criteria:*
-	#
-	#1. HR User can add new important repeating event with description by specifying the start-end dates in the specific time zones, adding certain location, adding attendees, color as "Pink" and availability as "Occupied".
-  @NEXTBASE-873
-  Scenario: Verify that HR User can add new important repeating event with description by specifying the start-end dates in the specific time zones, adding certain location, adding attendees, color as "Pink" and availability as "Occupied".
-    Given the user is on the login page
-    Given the user enters the HR information
-    When the user navigate to calender page
-    When the user click ADD
-    And the user fill necessary sections
-    When the user click SAVE
-    Then the user should be able to add new important repeating event
-
 	#US: As a user, I should be able to navigate "Calendar" page so that user can filter and search, display, add and track the tasks or events either on "Calendar" page.
 	#
 	#Acceptance Criteria:
@@ -193,3 +178,18 @@ Feature: Default
     And the user change event's name
     And the user click SAVE
     Then verify that user should be able to edit his or her event's name.
+
+	#*US:* As a user, I should be able to navigate "Calendar" page so that user can filter and search, display, add and track the tasks or events either on "Calendar" page.
+	#
+	#*Acceptance Criteria:*
+	#
+	#1. HR User can add new important repeating event with description by specifying the start-end dates in the specific time zones, adding certain location, adding attendees, color as "Pink" and availability as "Occupied".
+  @NEXTBASE-873
+  Scenario: Verify that HR User can add new important event with description by specifying the start-end dates in the specific time zones, adding certain location, adding attendees, color as "Pink" and availability as "Occupied".
+    Given the user is on the login page
+    Given the user enters the HR information
+    When the user navigate to calender page
+    When the user click ADD
+    And the user fill necessary sections
+    When the user click SAVE
+    Then the user should be able to add new important repeating event
