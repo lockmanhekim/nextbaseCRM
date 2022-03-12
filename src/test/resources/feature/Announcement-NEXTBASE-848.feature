@@ -36,69 +36,69 @@ Feature: Default
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 1. User should be able to click on upload files icon to upload files and pictures from local disks, download from external drive, select documents from bixtrix24, and create files to upload.
-  @NEXTBASE-895
+  @NEXTBASE-895 #passed
   Scenario: Verify that HR User should be able to click on upload files icon to upload files and documents from bixtrix24
     Given the user is on the login page
     Given the user enters the "HR" information
     When the user clicks on more and announcement
-    And the user clicks on upload files and clicks on "Select document from Bitrix24"
+    And the user clicks on upload files and clicks on Select document from Bitrix24
     And clicks on send announcenment
-    Then user should be send announcement
+    Then user should be send announcement by Uploading Bitrix24
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 1. User should be able to click on upload files icon to upload files and pictures from local disks, download from external drive, select documents from bixtrix24, and create files to upload.
-  @NEXTBASE-896
+  @NEXTBASE-896 #passed
   Scenario: Verify that Marketing User should be able to click on upload files icon to upload files and documents from bixtrix24
     Given the user is on the login page
     Given the user enters the "Marketing" information
     When the user clicks on more and announcement
-    And the user clicks on upload files and clicks on "Select document from Bitrix24"
+    And the user clicks on upload files and clicks on Select document from Bitrix24
     And clicks on send announcenment
-    Then user should be send announcement
+    Then user should be send announcement by Uploading Bitrix24
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 1. User should be able to click on upload files icon to upload files and pictures from local disks, download from external drive, select documents from bixtrix24, and create files to upload.
-  @NEXTBASE-897
+  @NEXTBASE-897 #passed
   Scenario: Verify that Helpdesk User should be able to click on upload files icon to upload files and documents from bixtrix24
     Given the user is on the login page
     Given the user enters the "Helpdesk" information
     When the user clicks on more and announcement
-    And the user clicks on upload files and clicks on "Select document from Bitrix24"
+    And the user clicks on upload files and clicks on Select document from Bitrix24
     And clicks on send announcenment
-    Then user should be send announcement
+    Then user should be send announcement by Uploading Bitrix24
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 2. User should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.
-  @NEXTBASE-898
+  @NEXTBASE-898 #passed
   Scenario: Verify that HR user should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.
     Given the user is on the login page
     Given the user enters the "HR" information
     When the user clicks on more and announcement
     And User adds other users and recipients from selecting contact from "E-mail user", "Employees and Departments" and "Recent contact lists"
     And clicks on send announcenment
-    Then user should be send announcement
+    Then user should send announcement to users
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 2. User should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.
-  @NEXTBASE-899
+  @NEXTBASE-899 #passed
   Scenario: Verify that Helpdesk user should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.
     Given the user is on the login page
     Given the user enters the "Helpdesk" information
     When the user clicks on more and announcement
     And User adds other users and recipients from selecting contact from "E-mail user", "Employees and Departments" and "Recent contact lists"
     And clicks on send announcenment
-    Then user should be send announcement
+    Then user should send announcement to users
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 2. User should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.
-  @NEXTBASE-900
+  @NEXTBASE-900 #passed
   Scenario: Verify that Marketing user should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.
     Given the user is on the login page
     Given the user enters the "Marketing" information
     When the user clicks on more and announcement
     And User adds other users and recipients from selecting contact from "E-mail user", "Employees and Departments" and "Recent contact lists"
     And clicks on send announcenment
-    Then user should be send announcement
+    Then user should send announcement to users
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 3. User should be able to attach link by clicking on the link icon.

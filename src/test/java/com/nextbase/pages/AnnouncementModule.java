@@ -11,4 +11,13 @@ public class AnnouncementModule extends BasePage {
     @FindBy(xpath = "//span[text()='Announcement']")
     public WebElement announcement;
 
+    @FindBy(id = "bx-b-uploadfile-blogPostForm")
+    public WebElement uploadFiles;
+
+    @FindBy(id = "blog-submit-button-save")
+    public  WebElement sendButton;
+
+    @FindBy(xpath = "//body[@contenteditable='true']") //iframe!!!
+    public  WebElement body;
+
 }
