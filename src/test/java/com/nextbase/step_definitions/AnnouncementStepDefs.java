@@ -36,20 +36,20 @@ public class AnnouncementStepDefs {
          AnnouncementModule announcementModule = new AnnouncementModule();
          announcementModule.uploadFiles.click();
 
-         WebElement uploadFilesAndImages = Driver.get().findElement(By.xpath("//*[@*='wd-fa-add-file-light']"));
-         BrowserUtils.waitForClickablility(uploadFilesAndImages,5);
+         WebElement uploadFilesAndImages = Driver.get().findElement(By.xpath("(//input[@class='diskuf-fileUploader wd-test-file-light-inp '])[1]")); //*[@*='wd-fa-add-file-light']
+         //BrowserUtils.waitForClickablility(uploadFilesAndImages,5);
          //uploadFilesAndImages.click();
-        JavascriptExecutor jse = (JavascriptExecutor)Driver.get();
-        jse.executeScript("arguments[0].click()", uploadFilesAndImages);
+        /*JavascriptExecutor jse = (JavascriptExecutor)Driver.get();
+        jse.executeScript("arguments[0].click()", uploadFilesAndImages);*/
          BrowserUtils.waitFor(4);
          String projectPath = System.getProperty("user.dir");
         System.out.println(projectPath);
         String filePath = "src\\test\\resources\\Test.txt";
          String fullPath = projectPath+"\\"+ filePath;
         System.out.println(fullPath);
-        BrowserUtils.waitForClickablility(uploadFilesAndImages,10);
+        //BrowserUtils.waitForClickablility(uploadFilesAndImages,10);
         uploadFilesAndImages.sendKeys(fullPath);
-         BrowserUtils.waitFor(2);
+         BrowserUtils.waitFor(8);
 
 
     }
@@ -200,32 +200,142 @@ public class AnnouncementStepDefs {
 
     @When("User inserts videos by clicking on the video icon and entering the video URL.")
     public void user_inserts_videos_by_clicking_on_the_video_icon_and_entering_the_video_URL() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        AnnouncementModule announcementModule = new AnnouncementModule();
+
+        WebElement insertVideoButton = Driver.get().findElement(By.xpath("//span[@title='Insert video']"));
+        Driver.get().manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+        insertVideoButton.click();
+
+        WebElement videoSource = Driver.get().findElement(By.cssSelector("#video_idPostFormLHE_blogPostForm-source"));
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        videoSource.sendKeys(announcementModule.vimeoURL);
+
+        WebElement videoTitle = Driver.get().findElement(By.cssSelector("#video_idPostFormLHE_blogPostForm-title"));
+        //BrowserUtils.waitForVisibility(videoTitle,10);
+        BrowserUtils.waitFor(5);
+
+        WebElement saveButton = Driver.get().findElement(By.cssSelector(".adm-btn-save"));
+        saveButton.click();
+
+        Faker faker = new Faker();
+        String generateText = faker.lordOfTheRings().character() + " " + faker.lordOfTheRings().location();
+
+        Driver.get().switchTo().frame(0);
+        announcementModule.body.sendKeys(generateText);
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().parentFrame();
+
+
+
     }
 
     @When("User creates a quote by clicking on the Comma icon.")
     public void user_creates_a_quote_by_clicking_on_the_Comma_icon() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        AnnouncementModule announcementModule =new AnnouncementModule();
+
+        WebElement quoteText = Driver.get().findElement(By.xpath("//span[@title='Quote text']"));
+        Driver.get().manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
+        quoteText.click();
+
+        Faker faker = new Faker();
+        String generateText = "First Book: " + faker.book().title() + " ,Second Book: " + faker.book().title();
+
+        Driver.get().switchTo().frame(0);
+        announcementModule.body.sendKeys(generateText);
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().parentFrame();
+
+
+
     }
 
     @When("User adds mention by clicking on the Add mention icon and select contacts from the lists provided in dropdown")
     public void user_adds_mention_by_clicking_on_the_Add_mention_icon_and_select_contacts_from_the_lists_provided_in_dropdown() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    }
+
+    @When("User adds mention by clicking on the Add mention icon and select {string} from the lists provided in dropdown")
+    public void user_adds_mention_by_clicking_on_the_Add_mention_icon_and_select_from_the_lists_provided_in_dropdown(String contact) {
+        WebElement addMention = Driver.get().findElement(By.cssSelector("#bx-b-mention-blogPostForm"));
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        addMention.click();
+
+        String user = "//div[contains(text(),'" + contact + "')]";
+        Driver.get().findElement(By.xpath(user)).click();
     }
 
     @When("User click on Visual Editor and see the editor text-bar displays on top of the message box")
     public void user_click_on_Visual_Editor_and_see_the_editor_text_bar_displays_on_top_of_the_message_box() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        AnnouncementModule announcementModule =new AnnouncementModule();
+
+        WebElement visualEditor = Driver.get().findElement(By.xpath("//span[@title='Visual editor']"));
+        WebElement textBar = Driver.get().findElement(By.cssSelector(".bxhtmled-top-bar-wrap"));
+        WebElement bold = Driver.get().findElement(By.xpath("//span[@title='Bold']"));
+
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        visualEditor.click();
+
+        Assert.assertTrue(textBar.isDisplayed());
+        System.out.println(textBar.isDisplayed());
+
+        bold.click();
+
+        Faker faker = new Faker();
+        String generateText = "First Book: " + faker.book().title() + " ,Second Book: " + faker.book().title();
+
+        Driver.get().switchTo().frame(0);
+        announcementModule.body.sendKeys(generateText);
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().parentFrame();
+
     }
 
     @When("User clicks on the Topic icon to see the announcement Topic text box displays on top of the message box")
     public void user_clicks_on_the_Topic_icon_to_see_the_announcement_Topic_text_box_displays_on_top_of_the_message_box() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        Faker faker = new Faker();
+        AnnouncementModule announcementModule =new AnnouncementModule();
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+
+        WebElement topicIcon = Driver.get().findElement(By.cssSelector("#lhe_button_title_blogPostForm"));
+        topicIcon.click();
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        //topicIcon.click();
+
+        WebElement topicBar = Driver.get().findElement(By.cssSelector("#POST_TITLE"));
+        topicBar.sendKeys(faker.country().name());
+        Assert.assertTrue(topicBar.isDisplayed());
+
+        BrowserUtils.waitFor(3);
+        Driver.get().findElement(By.cssSelector(".bxhtmled-textarea")).sendKeys(faker.name().fullName());
+
+    }
+
+    @When("Other User clicks on the Topic icon to see the announcement Topic text box displays on top of the message box")
+    public void other_User_clicks_on_the_Topic_icon_to_see_the_announcement_Topic_text_box_displays_on_top_of_the_message_box() {
+        Faker faker = new Faker();
+        AnnouncementModule announcementModule =new AnnouncementModule();
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+
+        WebElement topicIcon = Driver.get().findElement(By.cssSelector("#lhe_button_title_blogPostForm"));
+        topicIcon.click();
+        Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
+        topicIcon.click();
+
+        WebElement topicBar = Driver.get().findElement(By.cssSelector("#POST_TITLE"));
+        topicBar.sendKeys(faker.country().name());
+        Assert.assertTrue(topicBar.isDisplayed());
+
+        BrowserUtils.waitFor(3);
+
+        Driver.get().switchTo().frame(0);
+        Driver.get().findElement(By.xpath("//body[@contenteditable='true']")).sendKeys(faker.name().fullName());
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().parentFrame();
+
+
     }
 
     @Then("Verify that topic is seen")
@@ -236,8 +346,46 @@ public class AnnouncementStepDefs {
 
     @When("User creates new tag")
     public void user_creates_new_tag() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        AnnouncementModule announcementModule = new AnnouncementModule();
+        Faker faker = new Faker();
+
+        WebElement tagAdd = Driver.get().findElement(By.cssSelector("#bx-b-tag-input-blogPostForm"));
+        tagAdd.click();
+
+        WebElement tagBar = Driver.get().findElement(By.cssSelector("#TAGS_blogPostForm67abSn"));
+        tagBar.sendKeys(faker.gameOfThrones().house());
+
+        WebElement addButton = Driver.get().findElement(By.xpath("//*[@class=\"popup-window-buttons\"]/span"));
+        addButton.click();
+
+        BrowserUtils.waitFor(3);
+
+        Driver.get().findElement(By.xpath("//textarea[@class=\"bxhtmled-textarea\"]")).sendKeys(faker.gameOfThrones().character());
+
+    }
+
+    @When("Other User creates new tag")
+    public void other_User_creates_new_tag() {
+        AnnouncementModule announcementModule = new AnnouncementModule();
+        Faker faker = new Faker();
+
+        WebElement tagAdd = Driver.get().findElement(By.cssSelector("#bx-b-tag-input-blogPostForm"));
+        tagAdd.click();
+
+        WebElement tagBar = Driver.get().findElement(By.cssSelector("#TAGS_blogPostForm67abSn"));
+        tagBar.sendKeys(faker.gameOfThrones().house());
+
+        WebElement addButton = Driver.get().findElement(By.xpath("//*[@class=\"popup-window-buttons\"]/span"));
+        addButton.click();
+
+        BrowserUtils.waitFor(3);
+
+        Driver.get().switchTo().frame(0);
+        Driver.get().findElement(By.xpath("//body[@contenteditable='true']")).sendKeys(faker.gameOfThrones().character());
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().parentFrame();
+
     }
 
     @Then("Verify that tag is created")

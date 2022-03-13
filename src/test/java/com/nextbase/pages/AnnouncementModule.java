@@ -20,4 +20,6 @@ public class AnnouncementModule extends BasePage {
     @FindBy(xpath = "//body[@contenteditable='true']") //iframe!!!
     public  WebElement body;
 
+    public String vimeoURL = "https://vimeo.com/76979871";
+
 }
