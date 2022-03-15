@@ -36,36 +36,36 @@ Feature: Default
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 1. User should be able to click on upload files icon to upload files and pictures from local disks, download from external drive, select documents from bixtrix24, and create files to upload.
-	@NEXTBASE-895
+	@NEXTBASE-895 @bitrix
 	Scenario: Verify that HR User should be able to click on upload files icon to upload files and documents from bixtrix24
 		Given the user is on the login page
 		    Given the user enters the "HR" information
 		    When the user clicks on more and announcement
 		    And the user clicks on upload files and clicks on Select document from Bitrix24
 		    And clicks on send announcenment
-		    Then user should be send announcement by Uploading Bitrix24	
+			Then user should be send announcement
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 1. User should be able to click on upload files icon to upload files and pictures from local disks, download from external drive, select documents from bixtrix24, and create files to upload.
-	@NEXTBASE-896
+	@NEXTBASE-896 @bitrix
 	Scenario: Verify that Marketing User should be able to click on upload files icon to upload files and documents from bixtrix24
 		Given the user is on the login page
 		    Given the user enters the "Marketing" information
 		    When the user clicks on more and announcement
 		    And the user clicks on upload files and clicks on Select document from Bitrix24
 		    And clicks on send announcenment
-		    Then user should be send announcement by Uploading Bitrix24	
+			Then user should be send announcement
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 1. User should be able to click on upload files icon to upload files and pictures from local disks, download from external drive, select documents from bixtrix24, and create files to upload.
-	@NEXTBASE-897
+	@NEXTBASE-897 @bitrix
 	Scenario: Verify that Helpdesk User should be able to click on upload files icon to upload files and documents from bixtrix24
 		Given the user is on the login page
 		    Given the user enters the "Helpdesk" information
 		    When the user clicks on more and announcement
 		    And the user clicks on upload files and clicks on Select document from Bitrix24
 		    And clicks on send announcenment
-		    Then user should be send announcement by Uploading Bitrix24	
+			Then user should be send announcement
 
 	#US : As a user, I should be able to send annoucement from Annoucement subheadding from "More" under Activity Stream.
 	#AC : 2. User should be able to add users and recipients from selecting contact from E-mail user, Employees and Departments and Recent contact lists.

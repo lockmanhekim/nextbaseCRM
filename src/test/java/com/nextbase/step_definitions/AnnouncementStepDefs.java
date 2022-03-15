@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class AnnouncementStepDefs {
     @When("the user clicks on more and announcement")
@@ -64,7 +65,11 @@ public class AnnouncementStepDefs {
         jse.executeScript("arguments[0].click()", Bitrix24);
         BrowserUtils.waitFor(5);
         WebElement file6txt = Driver.get().findElement(By.xpath("//*[@*='bx-file-dialog-column-row bx-file-dialog-column-name']"));
-        BrowserUtils.waitForVisibility(file6txt,5);
+        try {
+            BrowserUtils.waitForVisibility(file6txt,5);
+        } catch (Exception e) {
+
+        }
         file6txt.click();
         BrowserUtils.waitFor(3);
 
@@ -142,6 +147,16 @@ public class AnnouncementStepDefs {
     public void user_adds_other_users_and_recipients_from_selecting_contact_from_and(String string, String string2, String string3) {
         AnnouncementModule announcementModule = new AnnouncementModule();
 
+        Faker faker = new Faker();
+        String generateText = faker.lordOfTheRings().character() + " " + faker.lordOfTheRings().location();
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().frame(0);
+        announcementModule.body.sendKeys(generateText);
+
+        BrowserUtils.waitFor(3);
+        Driver.get().switchTo().parentFrame();
+
         WebElement addMore = Driver.get().findElement(By.id("bx-destination-tag"));
         addMore.click();
 
@@ -152,7 +167,7 @@ public class AnnouncementStepDefs {
         Driver.get().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         departments.click();
         BrowserUtils.waitFor(5);
-        WebElement hd22 = Driver.get().findElement(By.xpath("//div[@class='bx-finder-company-department-employee-name' and text()='helpdesk22@cybertekschool.com' ]       "));
+        WebElement hd22 = Driver.get().findElement(By.xpath("//div[@class='bx-finder-company-department-employee-name' and text()='helpdesk22@cybertekschool.com' ]"));
         hd22.click();
         BrowserUtils.waitFor(3);
 
@@ -163,15 +178,9 @@ public class AnnouncementStepDefs {
         alperMail.click();
         */
         Driver.get().findElement(By.xpath("//span[@class='popup-window-close-icon']")).click();
+        BrowserUtils.waitFor(5);
 
-        Faker faker = new Faker();
-        String generateText = faker.lordOfTheRings().character() + " " + faker.lordOfTheRings().location();
 
-        Driver.get().switchTo().frame(0);
-        announcementModule.body.sendKeys(generateText);
-
-        BrowserUtils.waitFor(3);
-        Driver.get().switchTo().parentFrame();
     }
 
     @When("User attaches link by clicking on the link icon")
@@ -211,7 +220,7 @@ public class AnnouncementStepDefs {
         videoSource.sendKeys(announcementModule.vimeoURL);
 
         WebElement videoTitle = Driver.get().findElement(By.cssSelector("#video_idPostFormLHE_blogPostForm-title"));
-        //BrowserUtils.waitForVisibility(videoTitle,10);
+        BrowserUtils.waitForVisibility(videoTitle,10);
         BrowserUtils.waitFor(5);
 
         WebElement saveButton = Driver.get().findElement(By.cssSelector(".adm-btn-save"));
@@ -301,7 +310,7 @@ public class AnnouncementStepDefs {
         WebElement topicIcon = Driver.get().findElement(By.cssSelector("#lhe_button_title_blogPostForm"));
         topicIcon.click();
         Driver.get().manage().timeouts().implicitlyWait(3,TimeUnit.SECONDS);
-        //topicIcon.click();
+        topicIcon.click();
 
         WebElement topicBar = Driver.get().findElement(By.cssSelector("#POST_TITLE"));
         topicBar.sendKeys(faker.country().name());
