@@ -63,7 +63,7 @@ public class CalendarPage extends BasePage{
     @FindBy( xpath = "//*[@class='calendar-additional-alt-more']")
     public WebElement moreIcon;
 
-    @FindBy( xpath = "//*[@style='min-height: 104px;']")
+    @FindBy( css = "div[class*='calendar-field-container-textarea']")
     public WebElement description;
 
     @FindBy (xpath = "//*[@class='bx-editor-iframe']")
@@ -143,6 +143,31 @@ public class CalendarPage extends BasePage{
 
     @FindBy(xpath = "//*[@class='calendar-timeline-stream-content-event-name-link']")
     public WebElement newinvi;
+
+    @FindBy(xpath = "//*[@class='main-ui-filter-field-add-item']")
+    public WebElement addField;
+
+    @FindBy(xpath = "(//*[@class='main-ui-select-inner-label'])[4]")
+    public WebElement participationAdd;
+
+    @FindBy(xpath = "(//*[@data-name='IS_MEETING'])[2]")
+    public WebElement eventField;
+
+    @FindBy(xpath = "//div[@class='main-ui-select-inner-item-element']/../../*[2]")
+    public WebElement yes;
+
+    @FindBy(xpath = "(//*[@data-name='MEETING_STATUS'])[2]")
+    public WebElement participationStatusField;
+
+    @FindBy(xpath = "//div[@class='main-ui-select-inner-item-element']/../../*[3]")
+    public WebElement invited;
+
+    @FindBy(css = "[class*='ui-btn-icon-search']")
+    public WebElement searchButton;
+
+    @FindBy(css = "[class*='calendar-search-cancel']")
+    public WebElement resetIcon;
+
 
 
 }

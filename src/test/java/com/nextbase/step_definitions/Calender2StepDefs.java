@@ -1,6 +1,8 @@
 package com.nextbase.step_definitions;
 
+import okhttp3.internal.http.BridgeInterceptor;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.Color;
 import com.nextbase.pages.CalendarPage;
 import com.nextbase.utilities.BrowserUtils;
@@ -86,14 +88,24 @@ public class Calender2StepDefs {
         BrowserUtils.waitFor(1);
 
         calendar.moreIcon.click();
+        BrowserUtils.scrollToElement(calendar.moreIcon);
 
         // iframe içi
+        BrowserUtils.waitFor(2);
         Driver.get().switchTo().frame(calendar.iframe);
+        System.out.println("asdhaldfbkha");
 
-        BrowserUtils.scrollToElement(calendar.description);
+        try {
+            BrowserUtils.clickWithJS(calendar.description);
+            System.out.println("why");
 
-        calendar.description.sendKeys("MY_FIRST_DESCRIPTION_OF_BIRTHDAY");
-        BrowserUtils.waitFor(1);
+            BrowserUtils.waitFor(1);
+            calendar.description.sendKeys("MY_FIRST_DESCRIPTION_OF_BIRTHDAY");
+            BrowserUtils.waitFor(1);
+
+        }catch (WebDriverException e){
+            System.out.println("devamke");
+        }
 
         Driver.get().switchTo().defaultContent();
         // frameden çıktık
@@ -218,12 +230,6 @@ public class Calender2StepDefs {
         BrowserUtils.waitFor(1);
     }
 
-    @Then("verify that user should be able to edit his\\/her event's name.")
-    public void verify_that_user_should_be_able_to_edit_his_her_event_s_name() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
 
     @When("the user delete attendee")
     public void the_user_delete_attendee() {
@@ -260,6 +266,7 @@ public class Calender2StepDefs {
         calendar.addIcon.click();
 
         BrowserUtils.scrollToElement(calendar.addingZone);
+        BrowserUtils.waitFor(2);
         calendar.addingZone.sendKeys("marketing1@cybertekschool.com" + Keys.ENTER);
         calendar.addIcon.click();
 
@@ -279,13 +286,15 @@ public class Calender2StepDefs {
         calendar.openIcon.click();
 
         String actualMarketingUser= calendar.displayMarketingUser2.getText();
+        BrowserUtils.waitFor(1);
+        System.out.println(actualMarketingUser);
 
-        Assert.assertEquals("same","marketing1@cybertekschool.com",actualMarketingUser);
-
+        Assert.assertEquals("marketing1@cybertekschool.com",actualMarketingUser);
     }
 
     @When("the user click Filter and search")
     public void the_user_click_Filter_and_search() {
+        BrowserUtils.scrollToElement(calendar.filterAndSearchBox);
         BrowserUtils.waitFor(1);
         calendar.filterAndSearchBox.click();
     }
@@ -294,13 +303,6 @@ public class Calender2StepDefs {
 
         BrowserUtils.waitFor(1);
         calendar.I_Am_Organizer.click();
-    }
-
-
-    @Then("verify that Marketing user can't display the 3rd AC's private event on his\\/her calendar.")
-    public void verify_that_Marketing_user_can_t_display_the_3rd_AC_s_private_event_on_his_her_calendar() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
     }
 
     @When("the user click Invitation")
@@ -314,18 +316,31 @@ public class Calender2StepDefs {
 
     @When("the user click Search")
     public void the_user_click_Search() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.searchButton);
+        BrowserUtils.waitFor(1);
+        calendar.searchButton.click();
+
     }
     @When("the user click Reset")
     public void the_user_click_Reset() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+
+        try {
+            BrowserUtils.waitFor(2);
+            BrowserUtils.scrollToElement(calendar.resetIcon);
+            calendar.resetIcon.click();
+        } catch (WebDriverException e) {
+            System.out.println("devam");
+        }
+
     }
     @Then("verify that user should be able to reset Filter and Search options.")
     public void verify_that_user_should_be_able_to_reset_Filter_and_Search_options() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        String actual = calendar.filterAndSearchBox.getAttribute("placeholder");
+        System.out.println(actual);
+        Assert.assertEquals("Filter and search",actual);
     }
 
     @Then("verify that user should be able display the invitations by using Filter and search box after clicking Invitations button.")
@@ -339,8 +354,18 @@ public class Calender2StepDefs {
 
     @When("the user select Yes under Event with participants menu and Invited")
     public void the_user_select_Yes_under_Event_with_participants_menu_and_Invited() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        BrowserUtils.scrollToElement(calendar.addField);
+        BrowserUtils.clickWithJS(calendar.addField);
+        BrowserUtils.clickWithJS(calendar.participationAdd);
+        BrowserUtils.clickWithJS(calendar.eventField);
+        BrowserUtils.clickWithJS(calendar.yes);
+        BrowserUtils.waitFor(2);
+        BrowserUtils.clickWithJS(calendar.participationStatusField);
+        BrowserUtils.clickWithJS(calendar.invited);
+        BrowserUtils.waitFor(2);
+
+
     }
 
     @Then("Verify that user should be able to edit the 1st AC's privacy as Private event.")
@@ -373,8 +398,8 @@ public class Calender2StepDefs {
 
     }
 
-    @Then("veriy that user should be able to edit Repeat section as Daily.")
-    public void veriy_that_user_should_be_able_to_edit_Repeat_section_as_Daily() {
+    @Then("verify that user should be able to edit Repeat section as Daily.")
+    public void verify_that_user_should_be_able_to_edit_Repeat_section_as_Daily() {
 
         Alert alert = Driver.get().switchTo().alert();
         System.out.println(alert.getText()); //Print Alert popup
@@ -438,11 +463,6 @@ public class Calender2StepDefs {
         calendar.availability.getText();
 
         Assert.assertTrue(calendar.availability.getText().equalsIgnoreCase("Undecided"));
-
-
-
-
-
 
     }
 
