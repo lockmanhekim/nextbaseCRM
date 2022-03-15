@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -160,14 +161,67 @@ public class TaskPage extends BasePage {
     @FindBy(xpath = "//*[@class='js-id-timeestimate-time js-id-timeestimate-minute task-options-inp']")
     public WebElement timePlannedMinute;
 
-    @FindBy (linkText = "Add reminder")
+    @FindBy (xpath = "(//*[@class='task-dashed-link-inner']) [9]")
     public WebElement AddReminderButton;
 
     @FindBy (xpath = "(//*[@class='type-a-control'])[1]")
     public WebElement remindUsing;
 
+    @FindBy (xpath = "(//*[@class='type-a-control'])[1]")
+     public WebElement dateOption;
 
+    @FindBy(xpath = "(//*[@title='Message will be sent in the specified time before deadline']) [2]")
+    public WebElement deadlineOption;
 
+    @FindBy (xpath = "(//*[@class='task-options-reminder-link-mail']) ")
+    public WebElement emailOption;
+
+    @FindBy (xpath = "//*[@id='task-detail-deadline']")
+    public WebElement deadlineDate;
+
+    @FindBy (css = "[class*='task-popup-inp-container']")
+    public WebElement reminderCalendar;
+
+    @FindBy (xpath = "(//select[@class='task-popup-inp']) [2]")
+    public WebElement recipientSelect;
+
+    @FindBy (xpath = "(//*[@title='Message will be sent on a specific date']) ")
+    public WebElement dateOption1;
+
+    @FindBy (xpath = "(//*[@class='task-popup-inp'])[1]")
+    public WebElement calendarInputBox;
+
+    @FindBy (xpath = "(//*[@class='task-popup-label-add']) ")
+    public WebElement addReminderSelections;
+
+    @FindBy (xpath = "(//*[@class='main-grid-plus-button'] )[1]")
+    public WebElement  plusSign;
+
+    @FindBy (xpath = "(//*[@data-target='accomplice'])[1]")
+    public WebElement participants;
+
+    @FindBy(xpath = "(//*[@data-target='auditor'])[1]")
+    public WebElement observers;
+
+    @FindBy(xpath = "(//*[@class='js-id-tdp-mem-sel-is-open-form task-form-field-when-empty task-form-field-link add'])[1]")
+    public WebElement addParticipant;
+
+    @FindBy (css = "[id*='destDepartmentTab_']")
+    public WebElement employeeDepartment;
+
+    @FindBy (xpath = "(//*[@class='js-id-tdp-mem-sel-is-open-form task-form-field-when-empty task-form-field-link add'])[2]")
+    public WebElement addObserver;
+
+    @FindBy (xpath = "(//*[@class='task-detail-sidebar-info-user-name task-detail-sidebar-info-user-name-link'])[3]")
+    public WebElement participantAdded;
+
+    @FindBy (xpath = "(//*[@class='task-detail-sidebar-info-user-name task-detail-sidebar-info-user-name-link'])[4]")
+    public  WebElement observerAdded;
+    @FindBy (xpath = "//*[@class='js-id-checklist-is-open-form task-dashed-link-inner']")
+    public WebElement checkListButton;
+
+    @FindBy (xpath = "(//*[@class='js-id-checklist-is-form-title task-checklist-field-add'])")
+    public WebElement checklistInput1;
 
 
     int counter=0;
@@ -216,14 +270,12 @@ public class TaskPage extends BasePage {
 
         BrowserUtils.clickWithJS(daysList.get(index));
 
-
     }
 
     public void selectHour(String hour) {
 
         BrowserUtils.clickWithJS(timeHoursInput);
         timeHoursInput.sendKeys(hour);
-
     }
     public void selectMinutes(String minute){
         BrowserUtils.clickWithJS(timeMinutesInput);
@@ -235,7 +287,6 @@ public class TaskPage extends BasePage {
         if (person.equalsIgnoreCase("marketing3")){
             BrowserUtils.clickWithJS(marketing3UserMail);
             BrowserUtils.clickWithJS(nameSelector);
-
         }
 
     }
@@ -251,11 +302,84 @@ public class TaskPage extends BasePage {
 
     }
 
+    String month1=null;
+    String day1=null;
+    String year1=null;
+    String hour1=null;
+    String minute1=null;
+    String ampm1=null;
+    String text=null;
+    public void getDeadlineDate() {
+        text = deadlineDate.getText();
+
+    }
+
+    public void setDeadLineDateDuringTask(){
+        month1=(text.substring(0,2));
+        day1=(text.substring(3,5));
+        year1= (text.substring(6,10));
+        hour1=(text.substring(11,13));
+        minute1=(text.substring(14,16));
+        ampm1=text.substring(17,18);
+        BrowserUtils.waitFor(3);
+
+            selectHour(hour1);
+            selectMinutes(minute1);
+
+            if(month1.equalsIgnoreCase("12")){
+                selectMonth("January");
+            }else if (month1.equalsIgnoreCase("1")){
+            selectMonth("February");
+            }else if(month1.equalsIgnoreCase("2")){
+            selectMonth("March");
+            }else if(month1.equalsIgnoreCase("3")){
+            selectMonth("April");
+            } else if(month1.equalsIgnoreCase("4")){
+            selectMonth("May");
+            }else if(month1.equalsIgnoreCase("5")){
+            selectMonth("June");
+            }else  if(month1.equalsIgnoreCase("6")){
+            selectMonth("July");
+            }else if(month1.equalsIgnoreCase("7")){
+            selectMonth("August");
+           }else if(month1.equalsIgnoreCase("8")){
+            selectMonth("September");
+           }else if(month1.equalsIgnoreCase("9")){
+            selectMonth("October");
+           }else if(month1.equalsIgnoreCase("10")){
+            selectMonth("November");
+           }else if(month1.equalsIgnoreCase("11")){
+            selectMonth("December");
+           }
+
+            selectYear(year1);
+            findhiddenDays();
+            selectDay(day1);
 
 
+    }
 
 
+    public void setRecipientSelect (String option) {
+        Select dropdownRecipient= new Select(recipientSelect);
+        dropdownRecipient.selectByVisibleText(option);
+
+
+    }
+
+    public void selectParticipant (String participantUser) {
+        BrowserUtils.clickWithJS(Driver.get().findElement(By.linkText(participantUser)));
+
+    }
 }
+
+
+
+
+
+
+
+
 
 
 

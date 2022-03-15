@@ -112,7 +112,7 @@ public class TaskPageStepDefinitions {
     @Then("clicks to add more button in Responsible person box")
     public void clicks_to_add_more_button_in_Responsible_person_box() {
 
-        taskPage.addMoreButtonR.click();
+        BrowserUtils.clickWithJS(taskPage.addMoreButtonR);
     }
 
 
@@ -158,11 +158,14 @@ public class TaskPageStepDefinitions {
         BrowserUtils.waitFor(4);
 
 
+
+
     }
 
     @Then("clicks to Edit button")
     public void clicks_to_Edit_button() {
         Driver.get().switchTo().frame(taskPage.iframe2);
+        taskPage.getDeadlineDate();
        BrowserUtils.clickWithJS(taskPage.editButton);
         BrowserUtils.waitFor(4);
     }
@@ -197,42 +200,132 @@ public class TaskPageStepDefinitions {
             taskPage.timePlannedHour.sendKeys(hour);
             BrowserUtils.clickWithJS(taskPage.timePlannedMinute);
             taskPage.timePlannedMinute.sendKeys(minutes);
-
     }
+
     @Then("clicks to Add reminder")
     public void clicks_to_Add_reminder() {
+
         BrowserUtils.clickWithJS(taskPage.AddReminderButton);
-    }
-
-    @Then("selects {string}")
-    public void selects(String string) {
-       BrowserUtils.clickWithJS(taskPage.remindUsing);
+        BrowserUtils.waitFor(3);
 
     }
+
+
+    @Then("selects {string} to remind")
+    public void selects_to_remind(String remindtype) {
+        if(remindtype.equalsIgnoreCase("deadline")) {
+            BrowserUtils.clickWithJS(taskPage.dateOption);
+            BrowserUtils.waitFor(3);
+            BrowserUtils.clickWithJS(taskPage.deadlineOption);
+        }
+
+
+    }
+
 
     @Then("selects email option")
     public void selects_email_option() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+       BrowserUtils.clickWithJS(taskPage.emailOption);
+        BrowserUtils.waitFor(4);
+
+
     }
 
-    @Then("selects a {string}")
-    public void selects_a(String string) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("selects a {string} from calendar")
+    public void selects_a_from_calendar(String string) {
+        BrowserUtils.waitFor(4);
+        BrowserUtils.clickWithJS(taskPage.calendarInputBox);
+        BrowserUtils.waitFor(4);
+        taskPage.setDeadLineDateDuringTask();
+        BrowserUtils.clickWithJS(taskPage.submitDateDeadline);
+
+
     }
 
-    @Then("clicks select")
-    public void clicks_select() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+    @Then("selects {string} the recipient")
+    public void selects_the_recipient(String option) {
+       BrowserUtils.clickWithJS(taskPage.recipientSelect);
+       taskPage.setRecipientSelect(option);
+
     }
 
     @Then("clicks add")
     public void clicks_add() {
+       BrowserUtils.clickWithJS(taskPage.addReminderSelections);
+
+    }
+
+
+
+    @Then("clicks to plus sign button of the {string} task")
+    public void clicks_to_plus_sign_button_of_the_task(String string) {
+        BrowserUtils.clickWithJS(taskPage.plusSign);
+    }
+
+    @Then("clicks Participants")
+    public void clicks_Participants() {
+        BrowserUtils.clickWithJS(taskPage.participants);
+    }
+
+    @Then("clicks add in Participants")
+    public void clicks_add_in_Participants() {
+        BrowserUtils.clickWithJS(taskPage.addParticipant);
+
+    }
+
+    @Then("clicks Employees and departments in Participants")
+    public void clicks_Employees_and_departments_in_Participants() {
+        BrowserUtils.clickWithJS(taskPage.employeeDepartment);
+    }
+
+    @Then("selects {string}")
+    public void selects(String participantUser) {
+        taskPage.selectParticipant(participantUser);
+
+    }
+
+    @When("user clicks to Observers")
+    public void user_clicks_to_Observers() {
+      BrowserUtils.clickWithJS(taskPage.observers);
+    }
+
+    @When("clicks add in Observers")
+    public void clicks_add_in_Observers() {
+        BrowserUtils.clickWithJS(taskPage.addObserver);
+    }
+
+    @Then("clicks Employees and departments in Observers")
+    public void clicks_Employees_and_departments_in_Observers() {
+        BrowserUtils.clickWithJS(taskPage.employeeDepartment);
+    }
+
+    @Then("user selects {string}")
+    public void user_selects(String observerUser) {
+        taskPage.selectParticipant(observerUser);
+
+
+    }
+    @Then("Asserts {string} and {string} added")
+    public void asserts_and_added(String participant, String observer) {
+
+        Assert.assertTrue(taskPage.participantAdded.getText().equalsIgnoreCase(participant));
+        Assert.assertTrue(taskPage.observerAdded.getText().equalsIgnoreCase(observer));
+    }
+
+    @Then("clicks to Checklist")
+    public void clicks_to_Checklist() {
+        BrowserUtils.clickWithJS(taskPage.checkListButton);
+    }
+
+    @Then("add {string} checklistItem {string} using separator")
+    public void add_checklistItem_using_separator(String string, String string2) {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
+
+
+
+
 
 
 
