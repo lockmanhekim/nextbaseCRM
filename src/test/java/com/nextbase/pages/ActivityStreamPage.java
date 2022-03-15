@@ -37,10 +37,85 @@ public class ActivityStreamPage extends BasePage {
     public WebElement filterAndSearchAuthor;
 
 
+    @FindBy(xpath = "//div [@class = 'main-ui-filter-sidebar-item']")
+    public WebElement filterAndSearchDefaultFilters;
+
+    @FindBy (xpath = "//span[@class = 'main-ui-filter-field-add-item']")
+    public WebElement addFieldButton;
+
+    @FindBy (xpath = "//span[@class = 'main-ui-filter-field-restore-items']")
+    public WebElement restoreFieldLink;
+
+    @FindBy (xpath = "//div[@data-id= 'field_FAVORITES_USER_ID']")
+    public WebElement favoritesField;
+
+    @FindBy (xpath = "//div[@data-id= 'field_TAG']")
+    public WebElement tagField;
+
+    @FindBy (xpath = "//div[@data-id= 'field_EXTRANET']")
+    public WebElement extranetField;
+
+    @FindBy(xpath = "//span[@class= 'main-ui-control-field-label']")
+    public WebElement fieldNames;
+
+    @FindBy(xpath = "//div[@data-name = 'DATE_CREATE_datesel']")
+    public WebElement dateField;
+
+    @FindBy(xpath = "//div[@class='main-ui-select-inner-item-element']/../../*[2]")
+    public WebElement yesterday;
+
+    @FindBy(xpath = "//input[@type='number']")
+    public WebElement customNDays;
+
+
+    @FindBy (xpath = "//input[@name='DATE_CREATE_to']")
+    public WebElement customDateTo;
+
+    @FindBy (xpath = "//input[@name='DATE_CREATE_from']")
+    public WebElement customDateFrom;
+
+
+    @FindBy (xpath = "//span[@class = 'main-ui-select-name']")
+    public WebElement selectedDateOption;
+
+    @FindBy(xpath = "//div[@class = 'feed-time']")
+    public WebElement feedTime;
+
+    @FindBy(xpath ="//div[@class ='main-ui-filter-field-button-inner']/button")
+    public WebElement searchButton;
+
+    @FindBy (xpath = "//div[@data-name = 'EVENT_ID']/div")
+    public WebElement typeField;
+
+    @FindBy (xpath = "//span[@class = 'main-ui-filter-add-item']")
+    public WebElement saveFilterButton;
+
+    @FindBy(xpath = "//span[@class = 'main-ui-filter-field-button-item']")
+    public WebElement resetFilterLink;
+
+    @FindBy (xpath = "//span[@class='main-ui-filter-add-edit']")
+    public WebElement configureFilterIcon;
+
+    @FindBy(xpath = "//span[contains(@class, 'filter-save')]")
+    public WebElement saveButton;
+
+    @FindBy (xpath = "//input [@class= 'main-ui-filter-sidebar-edit-control']")
+    public WebElement newFilterName;
+
+    @FindBy (xpath = "//div[@class='main-ui-filter-search-square main-ui-square']")
+    public WebElement activityStreamFilterBox;
+
+    @FindBy (xpath = "//span[@class='popup-window-button']")
+    public WebElement popupContinueButton;
 
 
 
 
+
+
+    public void selectDateOptions(String dateOption){
+        WebElement selectedOption = Driver.get().findElement(By.xpath("//span[@class = 'main-ui-select-name']"));
+    }
 
 
 
