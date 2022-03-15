@@ -6,13 +6,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
+
     public BasePage(){
         PageFactory.initElements(Driver.get(), this);
     }
 
     @FindBy(xpath = "//a[@title=\"Employees\"]")
     public WebElement employeeLink;
-
+  
     @FindBy(css= "#user-name")
     public WebElement userNameDropdown;
 
@@ -21,6 +22,11 @@ public abstract class BasePage {
 
     @FindBy(linkText = "My Profile")
     public WebElement myProfileMenu;
+
+
+    @FindBy(xpath = "//*[@title=\"Calendar\"]")
+    public WebElement calendarLink;
+
 
 
 }
