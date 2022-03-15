@@ -12,6 +12,7 @@ public class SearchBarBoxStepDefs {
 
     @When("click the search bar")
     public void click_the_search_bar() {
+
         searchBarPage.searchInput.click();
     }
 

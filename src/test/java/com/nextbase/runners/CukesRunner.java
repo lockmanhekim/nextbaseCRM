@@ -12,7 +12,9 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/feature",
         glue = "com/nextbase/step_definitions",
         dryRun = false,
-        tags = "@NEXTBASE-974")
+
+
+        tags = "@wip")
 
 public class CukesRunner {
 }
