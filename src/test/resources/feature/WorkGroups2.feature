@@ -1,5 +1,5 @@
 @NEXTBASE-807
-Feature: Default
+Feature: Joining the Working Groups
 
 	#*US:*
 	#
