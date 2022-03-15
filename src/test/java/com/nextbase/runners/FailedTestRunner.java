@@ -12,4 +12,6 @@ import org.junit.runner.RunWith;
         glue = "com/nextbase/step_definitions"
 )
 public class FailedTestRunner {
+  
 }
+
