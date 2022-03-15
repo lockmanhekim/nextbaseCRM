@@ -1,4 +1,4 @@
-package com.nextbase.pages;
+package com.nextbase.pages.workflows;
 
 import com.nextbase.utilities.BrowserUtils;
 import org.openqa.selenium.By;

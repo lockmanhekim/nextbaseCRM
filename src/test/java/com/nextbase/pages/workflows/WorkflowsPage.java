@@ -1,9 +1,10 @@
-package com.nextbase.pages;
+package com.nextbase.pages.workflows;
 
+import com.nextbase.pages.BasePage;
 import com.nextbase.utilities.BrowserUtils;
 import org.openqa.selenium.By;
 
-public class WorkflowsPage extends BasePage{
+public class WorkflowsPage extends BasePage {
 
     //Refuse the request link
 
