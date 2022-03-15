@@ -1,5 +1,4 @@
-Feature: Users should be able to login
- @NEXTBASE-845
+@NEXTBASE-845
   Scenario Outline: Login as a user
     Given the user is on the login page
     When the user enters the "<userType>" information
