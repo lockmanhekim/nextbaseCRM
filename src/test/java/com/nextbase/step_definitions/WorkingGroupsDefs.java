@@ -19,7 +19,6 @@ public class WorkingGroupsDefs {
 
     @When("the user click on Workgroups")
     public void the_user_click_on_Workgroups() {
-
         workgroupsPage.workGroupsButton.click();
     }
 
