@@ -285,6 +285,7 @@ public class Calender2StepDefs {
         BrowserUtils.scrollToElement(calendar.openIcon);
         calendar.openIcon.click();
 
+        BrowserUtils.waitFor(2);
         String actualMarketingUser= calendar.displayMarketingUser2.getText();
         BrowserUtils.waitFor(1);
         System.out.println(actualMarketingUser);
