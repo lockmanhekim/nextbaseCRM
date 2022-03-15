@@ -29,6 +29,9 @@ public abstract class BasePage {
     @FindBy(xpath = "//*[@title=\"Calendar\"]")
     public WebElement calendarLink;
 
+    @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-vote\"]/span")
+    public WebElement pollButton;
+
     @FindBy(xpath = "//a[@title=\"Company\"]")
     public WebElement companyLink;
 
