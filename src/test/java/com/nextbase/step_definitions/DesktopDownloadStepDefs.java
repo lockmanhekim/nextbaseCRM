@@ -39,7 +39,6 @@ public class DesktopDownloadStepDefs {
         for (Iterator iterator = files.iterator(); iterator.hasNext(); ) {
             File file = (File) iterator.next();
 
-
             if (file.getName().contains(string.trim())) {
 
                 assertText = string;

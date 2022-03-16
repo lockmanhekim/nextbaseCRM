@@ -11,6 +11,7 @@ Feature: Default
 	#*2. User should be able to click on Windows icon under Desktop Client to download Windows version of Bitrix.*
 	#*3. User should be able to click on Linux icon under Desktop*
 	#*Client to download Linux version of Bitrix.*
+
 	@NEXTBASE-986
 	Scenario Outline: Verify that all user types can download desktop versions for different OS.
 		Given the user is on the login page
