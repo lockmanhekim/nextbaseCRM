@@ -4,7 +4,7 @@ Feature: As a user, I should be able to create and send workflows by selecting d
     Given the user is on the login page
 
     #User should be able to send a General Request by entering request Title, Description, priority level and Send Request To field.
-
+  @smoke
   Scenario Outline: User should be able to send General request
     When the user enters the "<user>" information
     Then the user should be able to login
@@ -26,7 +26,7 @@ Feature: As a user, I should be able to create and send workflows by selecting d
       | Helpdesk  | 493 | Medium         |
       | Marketing | 594 | High           |
   #Negative scenario without title
-
+  @smoke
   Scenario Outline: User should not be able to send General request without title
     When the user enters the "<user>" information
     Then the user should be able to login
@@ -45,7 +45,7 @@ Feature: As a user, I should be able to create and send workflows by selecting d
       | Helpdesk  | 493 |
       | Marketing | 594 |
     #Negative test case without the "send request to" input
-
+  @smoke
   Scenario Outline: User should not be able to send general request without "send request to" input
     When the user enters the "<user>" information
     Then the user should be able to login

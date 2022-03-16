@@ -19,7 +19,7 @@ Feature: Default
 	#10. HR User can be redirected to "New task template" page by clicking 'All templates' under "TASK TEMPLATES" menu on "New task" module.
 	#11. HR User can create new task template for high priority task, for him/herself, by mentioning about Marketing User, specifying the deadline, using the Options under 'Deadline in' section.
 	#12. HR User can delete task by using "SELECT ACTION" dropdown menu after checking the task.
-	@NEXTBASE-858
+	@NEXTBASE-858 @smoke
 	Scenario Outline: Verify that HR user can create a high priority task in duration of the certain deadline by mentioning about a user.
 		Given the user is on the login page
 				Given the user enters the HR information
