@@ -6,7 +6,7 @@ Feature: Default
 	#*Acceptance Criteria:*
 	#
 	#1. HR User can add new important repeating event with description by specifying the start-end dates in the specific time zones, adding certain location, adding attendees, color as "Pink" and availability as "Occupied".
-  @NEXTBASE-873
+  @NEXTBASE-873 @smoke
   Scenario: Verify that HR User can add new important event with description by specifying the start-end dates in the specific time zones, adding certain location, adding attendees, color as "Pink" and availability as "Occupied".
     Given the user is on the login page
     Given the user enters the HR information
