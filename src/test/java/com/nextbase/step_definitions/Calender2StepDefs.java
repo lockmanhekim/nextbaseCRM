@@ -96,8 +96,8 @@ public class Calender2StepDefs {
         System.out.println("asdhaldfbkha");
 
         try {
+            BrowserUtils.waitForVisibility(calendar.description,5);
             BrowserUtils.clickWithJS(calendar.description);
-            System.out.println("why");
 
             BrowserUtils.waitFor(1);
             calendar.description.sendKeys("MY_FIRST_DESCRIPTION_OF_BIRTHDAY");
