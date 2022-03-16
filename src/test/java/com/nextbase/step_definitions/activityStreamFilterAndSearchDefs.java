@@ -268,8 +268,6 @@ public class activityStreamFilterAndSearchDefs {
 
             Thread.sleep(3000);
 
-
-
     }
 
         @Then("the user should be able to display {string} based results on Activity Stream page")
