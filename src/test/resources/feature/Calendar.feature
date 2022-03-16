@@ -1,6 +1,6 @@
 
 Feature: As a user, I should be able to use Calendar function
-
+@wip
   Scenario Outline: User should see <textTab>
     Given the user is on the login page
     And the user enters the "<usertype>" information
