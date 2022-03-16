@@ -86,12 +86,10 @@ public class AppreciationPage extends BasePage {
     @FindBy(id = "video_idPostFormLHE_blogPostForm-source")
     public WebElement videoSourceBar;
 
-    @FindBy(xpath = "//*[@class='bxhtmled-video-error']")
-    public WebElement ıncorrectButton;
 
 
     @FindBy(xpath = "//*[@class='bxhtmled-quote']")
-    public WebElement commaButtonInside;
+    public WebElement commaButtoninside;
 
 
     @FindBy(id = "bx-b-quote-blogPostForm")
@@ -150,7 +148,7 @@ public class AppreciationPage extends BasePage {
 
 
     @FindBy(id = "feed-add-post-grat-type-selected")
-    public WebElement ıllustrationButton;
+    public WebElement illustrationButton;
 
 
 

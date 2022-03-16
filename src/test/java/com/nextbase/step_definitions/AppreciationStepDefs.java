@@ -258,7 +258,7 @@ public class AppreciationStepDefs {
         Driver.get().switchTo().frame(appreciationPage.iframe);
         BrowserUtils.waitFor(2);
 
-        appreciationPage.commaButtonInside.sendKeys(string);
+        appreciationPage.commaButtoninside.sendKeys(string);
         BrowserUtils.waitFor(2);
 
         Driver.get().switchTo().defaultContent();
@@ -375,7 +375,7 @@ public class AppreciationStepDefs {
 
     @When("click to thumbs up button and see the whole illustration")
     public void click_to_thumbs_up_button_and_see_the_whole_illustration() {
-            appreciationPage.ıllustrationButton.click();
+            appreciationPage.illustrationButton.click();
 
         for (int i = 1; i <8; i++) {
             WebElement allEmoji = Driver.get()
