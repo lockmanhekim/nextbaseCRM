@@ -183,8 +183,12 @@ public class TaskPage extends BasePage {
     @FindBy (css = "[class*='task-popup-inp-container']")
     public WebElement reminderCalendar;
 
+    @FindBy (xpath = "(//*[@class='task-popup-inp-container task-options-inp-container-period'])")
+    public WebElement recipientBox;
+
     @FindBy (xpath = "(//select[@class='task-popup-inp']) [2]")
     public WebElement recipientSelect;
+
 
     @FindBy (xpath = "(//*[@title='Message will be sent on a specific date']) ")
     public WebElement dateOption1;
@@ -340,7 +344,11 @@ public class TaskPage extends BasePage {
     @FindBy (xpath = "(//*[@class='js-id-checklist-is-i-drag-handle task-field-divider separator']) [4]")
     public WebElement sprtr2;
 
+    @FindBy (xpath = "(//*[@class='task-popup-inp']) [3]")
+    public WebElement reminderDayHour;
 
+    @FindBy (xpath = "(//*[@class='task-popup-inp']) [4]")
+    public WebElement reminderRecipient;
 
 
 
@@ -552,6 +560,7 @@ public class TaskPage extends BasePage {
 
     public void setRecipientSelect (String option) {
         Select dropdownRecipient= new Select(recipientSelect);
+
         dropdownRecipient.selectByVisibleText(option);
 
 

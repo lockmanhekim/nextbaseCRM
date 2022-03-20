@@ -143,15 +143,15 @@ Feature: Default
 		
 				    Examples:
 				    |taskName    |remindUsing |date             |sendingPerson			 |
-				    |testdeneme  |date        |before deadline  |to creator  			 |
-					|testdeneme  |date        |before deadline  |to responsible person   |
-					|testdeneme  |date        |before deadline  |to self      			 |
-					|testdeneme  |date        |after deadline   |to creator      		 |
-					|testdeneme  |date        |after deadline   |to responsible person	 |
-					|testdeneme  |date        |after deadline   |to self      			 |
-					|testdeneme  |date        |past date        |to creator  			 |
-					|testdeneme  |date        |past date		|to responsible person   |
-					|testdeneme  |date        |past date		|to self      			 |
+				    |TestTask2  |date        |before deadline  |to creator  			 |
+					|TestTask2  |date        |before deadline  |to responsible person   |
+					|TestTask2  |date        |before deadline  |to self      			 |
+					|TestTask2  |date        |after deadline   |to creator      		 |
+					|TestTask2  |date        |after deadline   |to responsible person	 |
+					|TestTask2  |date        |after deadline   |to self      			 |
+					|TestTask2  |date        |past date        |to creator  			 |
+					|TestTask2  |date        |past date		|to responsible person   |
+					|TestTask2  |date        |past date		|to self      			 |
 					|testdeneme2 |date        |in one year limit|to creator  			 |
 					|testdeneme2 |date        |in one year limit|to responsible person   |
 					|testdeneme2 |date        |in one year limit|to self      			 |

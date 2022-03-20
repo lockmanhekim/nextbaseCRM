@@ -260,8 +260,9 @@ public class TaskPageStepDefinitions {
 
     @Then("selects {string} the recipient")
     public void selects_the_recipient(String option) {
-        BrowserUtils.clickWithJS(taskPage.recipientSelect);
-        BrowserUtils.waitFor(3);
+
+        BrowserUtils.clickWithJS(taskPage.recipientBox);
+        BrowserUtils.waitFor(10);
         taskPage.setRecipientSelect(option);
 
     }
@@ -487,6 +488,18 @@ public class TaskPageStepDefinitions {
         taskPage.assertChechlistSeparatorTest();
 
     }
+    @Then("selects deadline to remind")
+    public void selects_deadline_to_remind() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
+    @Then("enters {string} to time input box")
+    public void enters_to_time_input_box(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+
 
 
 
