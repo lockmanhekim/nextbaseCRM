@@ -1,4 +1,6 @@
 @NEXTBASE-845
+  Feature: default
+
   Scenario Outline: Login as a user
     Given the user is on the login page
     When the user enters the "<userType>" information
