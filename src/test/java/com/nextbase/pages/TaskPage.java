@@ -74,12 +74,16 @@ public class TaskPage extends BasePage {
     @FindBy (css = "[class*=bx-calendar-top-month]")
     public WebElement monthSelectButton;
 
+    @FindBy(xpath = "//*[@class='bx-calendar-top-month']")
+    public WebElement mothSelectReminder;
     @FindAll({
         @FindBy (xpath = "//*[@class='bx-calendar-month']"),
         @FindBy (xpath = "//*[@class='bx-calendar-month bx-calendar-month-active']")
     })
     public List<WebElement> monthsDropDown;
 
+    @FindBy (xpath = "//*[@data-bx-id='dateplanmanager-deadline'][1]")
+    public WebElement datePlannerDeadline;
 
 
 
@@ -344,17 +348,23 @@ public class TaskPage extends BasePage {
     @FindBy (xpath = "(//*[@class='js-id-checklist-is-i-drag-handle task-field-divider separator']) [4]")
     public WebElement sprtr2;
 
+    @FindBy (xpath = "((//*[@title='Message will be sent in the specified time before deadline'])[2]/span)[2]")
+    public WebElement reminderDeadlineOption;
+
     @FindBy (xpath = "(//*[@class='task-popup-inp']) [3]")
     public WebElement reminderDayHour;
 
     @FindBy (xpath = "(//*[@class='task-popup-inp']) [4]")
     public WebElement reminderRecipient;
 
+    @FindBy (xpath = "//*[@data-bx-id='form-change-type']")
+    public WebElement selectReminder;
 
+    @FindBy (xpath = "//*[@data-bx-id='form-time-unit']")
+    public  WebElement reminderDayOrHour;
 
-
-
-
+    @FindBy (xpath = "//*[@data-bx-id='form-time-multiplier']")
+    public WebElement reminderInputBox;
 
 
 
@@ -464,6 +474,7 @@ public class TaskPage extends BasePage {
 
     }
     public void setReminderDuring(){
+
         int max= Integer.parseInt(month1);
         int min= 2;
         int maxDay=28;
@@ -482,7 +493,6 @@ public class TaskPage extends BasePage {
 
         selectYear(year1);
         BrowserUtils.waitFor(4);
-
 
 
     }
@@ -511,6 +521,38 @@ public class TaskPage extends BasePage {
 
 
     }
+
+    public void setReminderOneYearLimit() {
+        BrowserUtils.clickWithJS(datePlannerDeadline);
+        selectMonth("September");
+        selectYear("2022");
+        findhiddenDays();
+        selectDay("21");
+
+    }
+    public void setReminderExceedsOneYearLimit() {
+        int max= 12;
+        int min= 2;
+        int maxDay=28;
+        int minDay=1;
+        int randomMonth = (int)Math.floor(Math.random()*(max-min+1)+min);
+        int randomDay = (int)Math.floor(Math.random()*(maxDay-minDay+1)+minDay);
+
+        //dynamically select a random month between deadline month and current month * chef's kiss *
+        selectMonth(months[randomMonth]);
+        BrowserUtils.waitFor(4);
+
+        //random day selection
+        int index=randomDay+counter;
+        BrowserUtils.clickWithJS(daysList.get(index));
+        BrowserUtils.waitFor(4);
+
+        BrowserUtils.clickWithJS(yearSelectButton);
+        yearInput.sendKeys("2024");
+        BrowserUtils.waitFor(4);
+
+    }
+
 
     public void setDeadLineDateDuringTask(){
         month1=(text.substring(0,2));
@@ -561,8 +603,14 @@ public class TaskPage extends BasePage {
     public void setRecipientSelect (String option) {
         Select dropdownRecipient= new Select(recipientSelect);
 
-        dropdownRecipient.selectByVisibleText(option);
 
+            if (option.contains("responsible")){
+                dropdownRecipient.selectByValue("R");
+            }else if (option.contains("self")){
+                dropdownRecipient.selectByValue("S");
+            }else if(option.contains("creator")) {
+                dropdownRecipient.selectByValue("O");
+            }
 
     }
 
@@ -575,6 +623,13 @@ public class TaskPage extends BasePage {
         Select selectDelete = new Select (selectActionDrpDown);
         selectDelete.selectByIndex(13);
 
+
+    }
+
+
+    public void  setDayHourOption (String dayHour){
+        Select selectDayHour = new Select(reminderDayHour);
+        selectDayHour.selectByVisibleText(dayHour);
 
     }
 
