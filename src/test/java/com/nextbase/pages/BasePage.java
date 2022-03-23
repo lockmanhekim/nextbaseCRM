@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+//import static jdk.internal.org.jline.utils.InfoCmp.Capability.tab;
+
 public abstract class BasePage {
 
     public BasePage(){
@@ -32,8 +34,18 @@ public abstract class BasePage {
     @FindBy(xpath = "//*[@id=\"feed-add-post-form-tab-vote\"]/span")
     public WebElement pollButton;
 
+    @FindBy (xpath = "//a[@class ='b24-app-block-content-apps']")
+    public WebElement downloadMacOs;
+
+    @FindBy(xpath = "//a[@class = 'b24-app-block-content-apps b24-app-block-separate'][1]")
+    public WebElement downloadWindows;
+
+    @FindBy (xpath = "//a[@class = 'b24-app-block-content-apps b24-app-block-separate'][2]")
+    public WebElement downloadLinux;
+
     @FindBy(xpath = "//a[@title=\"Company\"]")
     public WebElement companyLink;
+
 
 
     // A left more button to show Applications and Workflows
