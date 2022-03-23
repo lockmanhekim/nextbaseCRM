@@ -1,4 +1,4 @@
-@wip
+
 Feature: As a user, I should be able to use quick navigate menu; so that I can use the functions of Activity Stream quickly.
   Scenario Outline: User can send a message
     Given the user is on the login page

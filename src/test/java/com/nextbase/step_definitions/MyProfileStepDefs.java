@@ -14,28 +14,7 @@ public class MyProfileStepDefs {
 
     MyProfilePage myProfilePage = new MyProfilePage();
 
-        @Given("User is logged in as {string}")
-        public void user_Is_Logged_In_As(String userType) {
-            String url = ConfigurationReader.get("url");
-            Driver.get().get(url);
 
-            String username =null;
-            String password =null;
-
-            if(userType.equals("HR")){
-                username = ConfigurationReader.get("HR_username");
-                password = ConfigurationReader.get("HR_password");
-            }else if(userType.equals("Helpdesk")){
-                username = ConfigurationReader.get("Helpdesk_username");
-                password = ConfigurationReader.get("Helpdesk_password");
-            }else if(userType.equals("Marketing")){
-                username = ConfigurationReader.get("Marketing_username");
-                password = ConfigurationReader.get("Marketing_password");
-            }
-            //send username and password and login
-            new LoginPage().login(username,password);
-
-        }
         @When("click username icon")
         public void click_username_icon() {
             myProfilePage.userNameDropdown.click();
